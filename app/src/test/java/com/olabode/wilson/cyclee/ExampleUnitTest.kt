@@ -6,7 +6,7 @@ import org.junit.Test
 
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
+    fun Addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
 }
