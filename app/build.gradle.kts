@@ -62,11 +62,12 @@ dependencies{
 
     implementation(Google.material)
 
-    androidTestImplementation(Junit.junit4)
+    testImplementation(Junit.junit4)
     androidTestImplementation(ComposeTest.uiTestJunit4)
     androidTestImplementation(HiltTest.hiltAndroidTesting)
     kaptAndroidTest(Hilt.compiler)
     debugImplementation(ComposeTest.uiTestManifest)
 }
+
 
 
