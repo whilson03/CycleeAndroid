@@ -43,7 +43,7 @@ android {
     }
 }
 
-dependencies{
+dependencies {
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.appCompat)
     implementation(AndroidX.lifecycleVmKtx)
@@ -56,7 +56,6 @@ dependencies{
     implementation(Compose.navigation)
     implementation(Compose.hiltNavigation)
 
-
     implementation(Hilt.android)
     kapt(Hilt.compiler)
 
@@ -68,6 +67,3 @@ dependencies{
     kaptAndroidTest(Hilt.compiler)
     debugImplementation(ComposeTest.uiTestManifest)
 }
-
-
-
