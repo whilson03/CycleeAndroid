@@ -9,9 +9,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.olabode.wilson.cyclee.utils.Constants
 import kotlinx.coroutines.delay
-
-private const val SplashWaitTime: Long = 2000
 
 @Composable
 fun SplashScreen(modifier: Modifier = Modifier, onTimeout: () -> Unit) {
@@ -25,7 +24,7 @@ fun SplashScreen(modifier: Modifier = Modifier, onTimeout: () -> Unit) {
         // If SplashScreen recomposes or onTimeout changes,
         // the delay shouldn't start again.
         LaunchedEffect(true) {
-            delay(SplashWaitTime)
+            delay(Constants.SplashWaitTime)
             currentOnTimeout()
         }
         Text("CYCLEE")
