@@ -5,9 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import com.olabode.wilson.cyclee.ui.screens.splash.SplashScreen
 import com.olabode.wilson.cyclee.ui.theme.CycleeTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,22 +20,10 @@ class MainActivity : ComponentActivity() {
                     color =
                     MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    SplashScreen() {
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    CycleeTheme {
-        Greeting("Android")
     }
 }
