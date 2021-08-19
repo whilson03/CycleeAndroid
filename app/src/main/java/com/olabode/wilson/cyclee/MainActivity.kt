@@ -5,11 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import com.olabode.wilson.cyclee.ui.screens.splash.SplashScreen
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.olabode.wilson.cyclee.ui.onboarding.OnBoardingScreen
 import com.olabode.wilson.cyclee.ui.theme.CycleeTheme
 
 class MainActivity : ComponentActivity() {
 
+    @ExperimentalPagerApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -20,8 +22,7 @@ class MainActivity : ComponentActivity() {
                     color =
                     MaterialTheme.colors.background
                 ) {
-                    SplashScreen() {
-                    }
+                    OnBoardingScreen()
                 }
             }
         }

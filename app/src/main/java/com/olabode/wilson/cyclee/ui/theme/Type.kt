@@ -8,36 +8,64 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.olabode.wilson.cyclee.R
 
-private val Candara = FontFamily(
-    Font(R.font.candara_regular),
-    Font(R.font.candara_bold),
-    Font(R.font.candara_bold_italic),
-    Font(R.font.candara_italic)
+val inter = FontFamily(
+    Font(R.font.inter_thin, FontWeight.Thin),
+    Font(R.font.inter_extra_light, FontWeight.ExtraLight),
+    Font(R.font.inter_light, FontWeight.Light),
+    Font(R.font.inter_regular, FontWeight.Normal),
+    Font(R.font.inter_medium, FontWeight.Medium),
+    Font(R.font.inter_bold, FontWeight.Bold),
+    Font(R.font.inter_semi_bold, FontWeight.SemiBold),
+    Font(R.font.inter_extra_bold, FontWeight.ExtraBold),
+    Font(R.font.inter_black, FontWeight.Black),
 )
 
 // Set of Material typography styles to start with
 val Typography = Typography(
+    defaultFontFamily = inter,
+
+    subtitle1 = TextStyle(
+        fontFamily = inter,
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Normal
+    ),
+
+    subtitle2 = TextStyle(
+        fontFamily = inter,
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Medium
+    ),
     body1 = TextStyle(
-        fontFamily = Candara,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
+        fontFamily = inter,
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Normal
+    ),
+    body2 = TextStyle(
+        fontFamily = inter,
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Normal
     ),
 
     button = TextStyle(
-        fontFamily = Candara,
-        fontWeight = FontWeight.W500,
-        fontSize = 14.sp
+        fontFamily = inter,
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Medium
     ),
     caption = TextStyle(
-        fontFamily = Candara,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
+        fontFamily = inter,
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Normal
+    ),
+    overline = TextStyle(
+        fontFamily = inter,
+        fontSize = 10.sp,
+        fontWeight = FontWeight.Normal
     ),
 
     h5 = TextStyle(
-        fontFamily = Candara,
-        fontWeight = FontWeight.Normal,
-        fontSize = 28.sp
+        fontFamily = inter,
+        fontSize = 28.sp,
+        fontWeight = FontWeight.ExtraBold
     ),
 
 )
