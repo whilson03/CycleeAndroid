@@ -61,6 +61,11 @@ dependencies {
 
     implementation(Google.material)
 
+    implementation(Accompanist.Pager)
+    implementation(Accompanist.PagerIndicator)
+
+    implementation(Libs.coil)
+
     testImplementation(Junit.junit4)
     androidTestImplementation(ComposeTest.uiTestJunit4)
     androidTestImplementation(HiltTest.hiltAndroidTesting)
