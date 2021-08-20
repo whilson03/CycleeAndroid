@@ -10,6 +10,9 @@ object AndroidX {
 
     private const val lifecycleRuntimeKtxVersion = "2.3.1"
     const val lifeCycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleRuntimeKtxVersion"
+
+    private const val datastoreVersion = "1.0.0"
+    const val datastore =  "androidx.datastore:datastore-preferences:$datastoreVersion"
 }
 
 object AndroidXTest {

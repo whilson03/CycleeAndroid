@@ -47,6 +47,7 @@ dependencies {
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.appCompat)
     implementation(AndroidX.lifecycleVmKtx)
+    implementation(AndroidX.datastore)
 
     implementation(Compose.activity)
 
