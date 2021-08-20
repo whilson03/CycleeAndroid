@@ -2,12 +2,14 @@ package com.olabode.wilson.cyclee.ui.onboarding
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
@@ -39,7 +41,7 @@ fun OnBoardingPageItem(
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(100.dp),
+        verticalArrangement = Arrangement.SpaceEvenly
     ) {
         Image(
             painter = painterResource(id = data.imageRes),
@@ -47,14 +49,19 @@ fun OnBoardingPageItem(
             contentDescription = "",
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(0.50f)
+                .fillMaxHeight(0.60f)
         )
 
-        OnBoardingSubsection(
-            modifier = modifier.padding(start = 16.dp, end = 16.dp),
-            title = data.title,
-            subtitle = data.subtitle
-        )
+        Box(
+            modifier = Modifier.fillMaxHeight(0.40f).offset(y = 20.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            OnBoardingSubsection(
+                modifier = modifier.padding(start = 16.dp, end = 16.dp),
+                title = data.title,
+                subtitle = data.subtitle
+            )
+        }
     }
 }
 
