@@ -1,12 +1,13 @@
 package com.olabode.wilson.cyclee.ui.onboarding
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
@@ -28,21 +29,14 @@ fun OnBoardingScreen() {
         HorizontalPager(state = pagerState) { page ->
             OnBoardingPageItem(data = pageContents[page])
         }
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
-            HorizontalPagerIndicator(
-                pagerState = pagerState,
-                activeColor = Orange600,
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(32.dp),
-            )
+        HorizontalPagerIndicator(
+            pagerState = pagerState,
+            activeColor = Orange600,
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+        )
 
-            OnBoardingNavigation {
-            }
-        }
+        OnBoardingNavigation {}
     }
 }
 
