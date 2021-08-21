@@ -5,8 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.olabode.wilson.cyclee.ui.onboarding.OnBoardingScreen
+import com.olabode.wilson.cyclee.ui.navigation.AppNavigation
 import com.olabode.wilson.cyclee.ui.theme.CycleeTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,12 +18,8 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             CycleeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    color =
-                    MaterialTheme.colors.background
-                ) {
-                    OnBoardingScreen()
+                Surface(color = MaterialTheme.colors.background) {
+                    AppNavigation(navController = rememberNavController())
                 }
             }
         }

@@ -17,7 +17,19 @@ import com.olabode.wilson.cyclee.ui.theme.Orange600
 
 @ExperimentalPagerApi
 @Composable
-fun OnBoardingScreen() {
+fun OnBoardingScreen(
+    openAuthScreen: () -> Unit
+) {
+    OnBoardingScreenContent(
+        openAuthScreen = openAuthScreen
+    )
+}
+
+@ExperimentalPagerApi
+@Composable
+fun OnBoardingScreenContent(
+    openAuthScreen: () -> Unit
+) {
     val pageContents = remember { OnBoardingData.getOnBoardingContentList() }
     val pagerState = rememberPagerState(pageCount = pageContents.size)
 
@@ -36,7 +48,9 @@ fun OnBoardingScreen() {
                 .align(Alignment.CenterHorizontally)
         )
 
-        OnBoardingNavigation {}
+        OnBoardingNavigation {
+            openAuthScreen()
+        }
     }
 }
 
@@ -44,5 +58,5 @@ fun OnBoardingScreen() {
 @Composable
 @Preview
 fun PreviewOnBoardingScreen() {
-    OnBoardingScreen()
+    OnBoardingScreenContent {}
 }
