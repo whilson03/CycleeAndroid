@@ -13,12 +13,32 @@ import com.olabode.wilson.cyclee.utils.Constants
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen(modifier: Modifier = Modifier, onTimeout: () -> Unit) {
+fun SplashScreen(
+    openOnBoarding: () -> Unit,
+    openAuth: () -> Unit,
+    openMainApp: () -> Unit,
+) {
+    SplashScreenContent(
+        openAuth = openAuth,
+        openOnBoarding = openOnBoarding,
+        openMainApp = openMainApp
+    )
+}
+
+@Suppress("UnusedPrivateMember")
+@Composable
+fun SplashScreenContent(
+    modifier: Modifier = Modifier,
+    openOnBoarding: () -> Unit,
+    openAuth: () -> Unit,
+    openMainApp: () -> Unit,
+) {
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
 
         // This will always refer to the latest onTimeout function that
         // SplashScreen was recomposed with
-        val currentOnTimeout by rememberUpdatedState(onTimeout)
+        val currentOnTimeout by rememberUpdatedState(openOnBoarding)
+        // todo implement proper navigation callback calling.
 
         // Create an effect that matches the lifecycle of SplashScreen.
         // If SplashScreen recomposes or onTimeout changes,
