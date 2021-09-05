@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Cyclee</string>
     <string name="skip">Skip</string>
+    <string name="delete">Delete</string>
+    <string name="mail_verification_title">Enter the verification code sent to your mail.</string>
+    <string name="submit">Submit</string>
 </resources>
