@@ -12,6 +12,11 @@ object Compose {
 
     private const val hiltNavigationComposeVersion = "1.0.0-alpha03"
     const val hiltNavigation = "androidx.hilt:hilt-navigation-compose:$hiltNavigationComposeVersion"
+
+    private const val constraint_layout_version = "1.0.0-beta02"
+    const val constraintCompose =
+        "androidx.constraintlayout:constraintlayout-compose:$constraint_layout_version"
+
 }
 
 object ComposeTest {

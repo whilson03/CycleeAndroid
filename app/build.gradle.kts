@@ -56,6 +56,7 @@ dependencies {
     implementation(Compose.tooling)
     implementation(Compose.navigation)
     implementation(Compose.hiltNavigation)
+    implementation(Compose.constraintCompose)
 
     implementation(Hilt.android)
     kapt(Hilt.compiler)
