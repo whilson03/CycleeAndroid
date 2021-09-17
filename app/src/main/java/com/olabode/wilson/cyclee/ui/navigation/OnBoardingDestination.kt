@@ -11,7 +11,9 @@ import com.olabode.wilson.cyclee.ui.onboarding.OnBoardingScreen
 fun NavGraphBuilder.addOnBoardingGraph(navController: NavController) {
     composable(route = Screen.OnBoarding.route) {
         OnBoardingScreen(
-            openAuthScreen = {}
+            openAuthScreen = {
+                navController.navigate(Screen.Authentication.route)
+            }
         )
     }
 }

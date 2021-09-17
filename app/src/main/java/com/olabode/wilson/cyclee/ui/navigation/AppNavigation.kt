@@ -11,5 +11,6 @@ internal fun AppNavigation(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Screen.Splash.route) {
         addSplashGraph(navController)
         addOnBoardingGraph(navController)
+        addAuthGraph(navController)
     }
 }
