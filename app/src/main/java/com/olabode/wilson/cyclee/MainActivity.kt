@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.olabode.wilson.cyclee.ui.navigation.AppNavigation
@@ -12,6 +13,7 @@ import com.olabode.wilson.cyclee.ui.theme.CycleeTheme
 
 class MainActivity : ComponentActivity() {
 
+    @ExperimentalComposeUiApi
     @ExperimentalPagerApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

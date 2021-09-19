@@ -4,4 +4,17 @@
     <string name="delete">Delete</string>
     <string name="mail_verification_title">Enter the verification code sent to your mail.</string>
     <string name="submit">Submit</string>
+    <string name="forgot_password">Forgot password ?</string>
+    <string name="login">Log in</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="email">Email</string>
+    <string name="create_new_account_question">Don’t have an account</string>
+    <string name="create_new_account_question_action">Create Account</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="full_name">Full Name</string>
+    <string name="existing_account_question">Already have an account</string>
+    <string name="existing_account_question_action">login</string>
+    <string name="create_account_message">A bicycle ride around the world is healing.</string>
+    <string name="login_account_message">Life is a beautiful ride.</string>
 </resources>
