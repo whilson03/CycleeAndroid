@@ -7,6 +7,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.olabode.wilson.cyclee.ui.screens.login.LoginScreen
 import com.olabode.wilson.cyclee.ui.screens.register.RegisterScreen
+import com.olabode.wilson.cyclee.ui.screens.resetpassword.CreateNewPasswordScreen
+import com.olabode.wilson.cyclee.ui.screens.resetpassword.RecoverPasswordScreen
 import com.olabode.wilson.cyclee.ui.screens.verification.VerificationScreen
 
 /**
@@ -41,9 +43,22 @@ fun NavGraphBuilder.addAuthGraph(navController: NavController) {
             )
         }
         composable(route = AuthScreen.ForgotPassword.route) {
+            RecoverPasswordScreen(
+                onNavigateToVerification = {
+                    navController.navigate(AuthScreen.Verification.route)
+                }
+            )
         }
+
         composable(route = AuthScreen.Verification.route) {
             VerificationScreen()
+        }
+
+        composable(route = AuthScreen.CreateNewPasswordScreen.route) {
+            CreateNewPasswordScreen(
+                onNavigateToLogin = {
+                }
+            )
         }
     }
 }

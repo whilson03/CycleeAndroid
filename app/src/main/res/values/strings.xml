@@ -17,4 +17,8 @@
     <string name="existing_account_question_action">login</string>
     <string name="create_account_message">A bicycle ride around the world is healing.</string>
     <string name="login_account_message">Life is a beautiful ride.</string>
+    <string name="password_recovery_subtitle">Treat your password like your bicycle</string>
+    <string name="password_recovery_header">Password Recovery</string>
+    <string name="create">Create</string>
+    <string name="create_new_password">Create a new password</string>
 </resources>
