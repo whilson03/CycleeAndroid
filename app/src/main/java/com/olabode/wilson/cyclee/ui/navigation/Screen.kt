@@ -11,4 +11,5 @@ sealed class AuthScreen(val route: String) {
     object Register : AuthScreen("register")
     object Verification : AuthScreen("verification")
     object ForgotPassword : AuthScreen("forgotPassword")
+    object CreateNewPasswordScreen : AuthScreen("createNewPassword")
 }

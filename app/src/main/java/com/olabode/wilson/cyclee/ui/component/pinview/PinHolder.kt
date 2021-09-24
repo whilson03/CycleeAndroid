@@ -1,6 +1,5 @@
 package com.olabode.wilson.cyclee.ui.component.pinview
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -270,9 +269,7 @@ private fun BuildPinBoxes(
 fun PreviewPinScreen() {
     PinView(
         modifier = Modifier.fillMaxSize()
-    ) {
-        Log.e("Complete", it)
-    }
+    ) {}
 }
 
 @Preview
