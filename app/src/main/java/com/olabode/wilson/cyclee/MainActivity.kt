@@ -7,14 +7,14 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.compose.rememberNavController
-import com.google.accompanist.pager.ExperimentalPagerApi
 import com.olabode.wilson.cyclee.ui.navigation.AppNavigation
 import com.olabode.wilson.cyclee.ui.theme.CycleeTheme
+import kotlinx.coroutines.InternalCoroutinesApi
 
 class MainActivity : ComponentActivity() {
 
+    @InternalCoroutinesApi
     @ExperimentalComposeUiApi
-    @ExperimentalPagerApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

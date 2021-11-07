@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="11" />
+    <bytecodeTargetLevel target="1.7">
+      <module name="Cyclee.app" target="11" />
+      <module name="Cyclee.buildSrc" target="11" />
+      <module name="Cyclee.common-ui" target="11" />
+      <module name="Cyclee.components" target="11" />
+      <module name="Cyclee.feature-authentication" target="11" />
+      <module name="Cyclee.feature-onboarding" target="11" />
+      <module name="Cyclee.feature_auth.ui-login" target="11" />
+      <module name="Cyclee.navigation" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

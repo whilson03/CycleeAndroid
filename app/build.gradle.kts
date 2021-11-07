@@ -44,6 +44,10 @@ android {
 }
 
 dependencies {
+
+    "implementation"(project(Modules.onBoarding))
+    "implementation"(project(Modules.authentication))
+
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.appCompat)
     implementation(AndroidX.lifecycleVmKtx)
@@ -62,9 +66,6 @@ dependencies {
     kapt(Hilt.compiler)
 
     implementation(Google.material)
-
-    implementation(Accompanist.Pager)
-    implementation(Accompanist.PagerIndicator)
 
     implementation(Libs.coil)
 

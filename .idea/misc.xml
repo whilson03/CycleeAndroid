@@ -120,14 +120,44 @@
         <entry key="../../../../layout/compose-model-1632513874373.xml" value="0.14664764621968615" />
         <entry key="../../../../layout/compose-model-1632514819688.xml" value="0.34629629629629627" />
         <entry key="../../../../layout/compose-model-1632514828123.xml" value="0.34629629629629627" />
+        <entry key="../../../../layout/compose-model-1632516123631.xml" value="0.21748310810810811" />
+        <entry key="../../../../layout/compose-model-1632516946075.xml" value="0.21748310810810811" />
+        <entry key="../../../../layout/compose-model-1632516956884.xml" value="0.21748310810810811" />
+        <entry key="../../../../layout/compose-model-1632577712846.xml" value="0.21748310810810811" />
+        <entry key="../../../../layout/compose-model-1632581306598.xml" value="0.3728885135135135" />
+        <entry key="../../../../layout/compose-model-1635191999347.xml" value="0.22170608108108109" />
+        <entry key="../../../../layout/compose-model-1635200585765.xml" value="0.375" />
+        <entry key="../../../../layout/compose-model-1635200646598.xml" value="0.2675925925925926" />
+        <entry key="../../../../layout/compose-model-1635200730241.xml" value="0.2222692633361558" />
+        <entry key="../../../../layout/compose-model-1635367783420.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1635367816122.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1635370391133.xml" value="0.13703703703703704" />
+        <entry key="../../../../layout/compose-model-1635371917039.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1635373000570.xml" value="0.13703703703703704" />
+        <entry key="../../../../layout/compose-model-1635406864513.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1635409417051.xml" value="0.2222692633361558" />
+        <entry key="../../../../layout/compose-model-1635409423861.xml" value="0.2222692633361558" />
+        <entry key="../../../../layout/compose-model-1635409431490.xml" value="0.2222692633361558" />
+        <entry key="../../../../layout/compose-model-1635409436769.xml" value="0.2222692633361558" />
+        <entry key="../../../../layout/compose-model-1635409443337.xml" value="0.2222692633361558" />
+        <entry key="../../../../layout/compose-model-1635409446179.xml" value="0.2222692633361558" />
+        <entry key="../../../../layout/compose-model-1635409477851.xml" value="0.2222692633361558" />
+        <entry key="../../../../layout/compose-model-1635548480266.xml" value="0.1913632514817951" />
+        <entry key="../../../../layout/compose-model-1636234441303.xml" value="0.1" />
+        <entry key="../../../../layout/compose-model-1636234640571.xml" value="0.26164267569856053" />
+        <entry key="../../../../layout/compose-model-1636297169830.xml" value="0.25" />
+        <entry key="../../../../layout/compose-model-1636300829393.xml" value="0.2734970364098222" />
+        <entry key="../../../../layout/compose-model-1636308351876.xml" value="0.25" />
+        <entry key="../../../../layout/compose-model-1636311424906.xml" value="0.9150326797385621" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.14010416666666667" />
         <entry key="app/src/main/res/drawable/rectangle_1.xml" value="0.15555555555555556" />
         <entry key="app/src/main/res/drawable/rectangle_1__1_.xml" value="0.15555555555555556" />
         <entry key="app/src/main/res/drawable/vector_illustration_of_tillable_seamless_bikes_and_bike_parts____1.xml" value="0.14010416666666667" />
+        <entry key="feature-authentication/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.17592592592592593" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

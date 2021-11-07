@@ -17,11 +17,11 @@ buildscript {
         classpath(Build.kotlinGradlePlugin)
         classpath(Build.hiltAndroid)
         classpath(StaticAnalysis.ktlint)
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20")
     }
 }
 
-subprojects {
+allprojects {
     apply {
         plugin("io.gitlab.arturbosch.detekt")
         plugin("org.jlleitschuh.gradle.ktlint")
@@ -42,6 +42,8 @@ subprojects {
     }
 
     detekt {
+        parallel = true
+        buildUponDefaultConfig = false
         config = rootProject.files("config/detekt/detekt.yml")
         reports {
             html {
