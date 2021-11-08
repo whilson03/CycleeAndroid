@@ -5,11 +5,11 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.olabode.wilson.cyclee.ui.screens.login.LoginScreen
-import com.olabode.wilson.cyclee.ui.screens.register.RegisterScreen
-import com.olabode.wilson.cyclee.ui.screens.resetpassword.CreateNewPasswordScreen
-import com.olabode.wilson.cyclee.ui.screens.resetpassword.RecoverPasswordScreen
-import com.olabode.wilson.cyclee.ui.screens.verification.VerificationScreen
+import com.olabode.wilson.cyclee.feature_authentication.presentation.login.LoginScreen
+import com.olabode.wilson.cyclee.feature_authentication.presentation.register.RegisterScreen
+import com.olabode.wilson.cyclee.feature_authentication.presentation.resetpassword.CreateNewPasswordScreen
+import com.olabode.wilson.cyclee.feature_authentication.presentation.resetpassword.RecoverPasswordScreen
+import com.olabode.wilson.cyclee.feature_authentication.presentation.verification.VerificationScreen
 
 /**
  * CREATED BY: ADEYORIJU OLABODE WILSON

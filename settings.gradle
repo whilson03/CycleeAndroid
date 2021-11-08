@@ -3,8 +3,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
     }
 }
 rootProject.name = "Cyclee"
 include ':app'
+include ':core'
+include ':components'
+include ':common-ui'
+include ':feature-authentication'
+include ':feature-onboarding'
