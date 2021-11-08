@@ -147,12 +147,14 @@
         <entry key="../../../../layout/compose-model-1636234640571.xml" value="0.26164267569856053" />
         <entry key="../../../../layout/compose-model-1636297169830.xml" value="0.25" />
         <entry key="../../../../layout/compose-model-1636300829393.xml" value="0.2734970364098222" />
-        <entry key="../../../../layout/compose-model-1636308351876.xml" value="0.25" />
+        <entry key="../../../../layout/compose-model-1636308351876.xml" value="0.165" />
         <entry key="../../../../layout/compose-model-1636311424906.xml" value="0.9150326797385621" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.14010416666666667" />
+        <entry key="app/src/main/res/drawable/ic_round_backspace.xml" value="0.2490740740740741" />
         <entry key="app/src/main/res/drawable/rectangle_1.xml" value="0.15555555555555556" />
         <entry key="app/src/main/res/drawable/rectangle_1__1_.xml" value="0.15555555555555556" />
         <entry key="app/src/main/res/drawable/vector_illustration_of_tillable_seamless_bikes_and_bike_parts____1.xml" value="0.14010416666666667" />
+        <entry key="feature-authentication/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2490740740740741" />
         <entry key="feature-authentication/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.17592592592592593" />
       </map>
     </option>
