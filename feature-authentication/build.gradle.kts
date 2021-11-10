@@ -4,4 +4,5 @@ apply {
 
 dependencies {
     "implementation"(project(Modules.commonUI))
+    "implementation"(project(Modules.core))
 }
