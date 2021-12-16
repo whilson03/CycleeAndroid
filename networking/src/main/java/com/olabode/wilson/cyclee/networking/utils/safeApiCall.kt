@@ -33,7 +33,7 @@ suspend fun <T> safeApiCall(dispatcher: CoroutineDispatcher, apiCall: suspend ()
     }
 }
 
-@Suppress("SwallowedException","TooGenericExceptionCaught")
+@Suppress("SwallowedException", "TooGenericExceptionCaught")
 private fun convertErrorBody(throwable: HttpException): ErrorResponse? {
     return try {
         throwable.response()?.errorBody()?.source()?.let {

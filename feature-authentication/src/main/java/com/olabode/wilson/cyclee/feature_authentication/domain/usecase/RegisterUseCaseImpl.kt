@@ -42,9 +42,10 @@ class RegisterUseCaseImpl @Inject constructor(
         val emptyConfirmPassword = credentials.confirmPassword.isEmpty()
         val failedMatchPassword = credentials.password != credentials.confirmPassword
 
-        return if (emptyEmail || emptyPassword
-            || emptyFirstName || emptyLastName ||
-            emptyConfirmPassword || failedMatchPassword) {
+        return if (emptyEmail || emptyPassword ||
+            emptyFirstName || emptyLastName ||
+            emptyConfirmPassword || failedMatchPassword
+        ) {
 
             RegisterResult.Failure.EmptyCredentials(
                 emptyEmail = emptyEmail,

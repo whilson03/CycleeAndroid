@@ -126,7 +126,7 @@ class RegisterViewModel @Inject constructor(
 }
 
 private fun RegisterResult.Failure.EmptyCredentials
-        .toRegisterViewState(credentials: RegisterCredentials): RegisterViewState {
+.toRegisterViewState(credentials: RegisterCredentials): RegisterViewState {
 
     return RegisterViewState.Active(
         credentials = credentials,
