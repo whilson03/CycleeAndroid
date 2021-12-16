@@ -17,5 +17,10 @@ package com.olabode.wilson.cyclee.core.data
 sealed class Result<out T> {
     data class Success<out T>(val data: T) : Result<T>()
 
-    data class Error(val error: Throwable, val message: String?) : Result<Nothing>()
+    data class Error(
+        val error: Throwable? = null,
+        val message: String? = null
+    ) : Result<Nothing>()
 }
+
+typealias SimpleResult = Result<Unit>

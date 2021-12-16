@@ -41,12 +41,17 @@ android {
         exclude("META-INF/AL2.0")
         exclude("META-INF/LGPL2.1")
     }
+
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
 
     "implementation"(project(Modules.onBoarding))
     "implementation"(project(Modules.authentication))
+    "implementation"(project(Modules.networking))
 
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.appCompat)
@@ -69,7 +74,7 @@ dependencies {
 
     implementation(Libs.coil)
 
-    testImplementation(Junit.junit4)
+    testImplementation(Tests.junit4)
     androidTestImplementation(ComposeTest.uiTestJunit4)
     androidTestImplementation(HiltTest.hiltAndroidTesting)
     kaptAndroidTest(Hilt.compiler)

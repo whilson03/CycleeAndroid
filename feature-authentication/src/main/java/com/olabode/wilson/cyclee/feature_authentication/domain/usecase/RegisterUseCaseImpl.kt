@@ -35,17 +35,24 @@ class RegisterUseCaseImpl @Inject constructor(
     }
 
     private fun validateCredentials(credentials: RegisterCredentials): RegisterResult.Failure.EmptyCredentials? {
-        val emptyEmail = credentials.email.value.isEmpty()
-        val emptyPassword = credentials.password.value.isEmpty()
-        val emptyFirstName = credentials.firstName.value.isEmpty()
-        val emptyLastName = credentials.lastName.value.isEmpty()
+        val emptyEmail = credentials.email.isEmpty()
+        val emptyPassword = credentials.password.isEmpty()
+        val emptyFirstName = credentials.firstName.isEmpty()
+        val emptyLastName = credentials.lastName.isEmpty()
+        val emptyConfirmPassword = credentials.confirmPassword.isEmpty()
+        val failedMatchPassword = credentials.password != credentials.confirmPassword
 
-        return if (emptyEmail || emptyPassword) {
+        return if (emptyEmail || emptyPassword
+            || emptyFirstName || emptyLastName ||
+            emptyConfirmPassword || failedMatchPassword) {
+
             RegisterResult.Failure.EmptyCredentials(
                 emptyEmail = emptyEmail,
                 emptyPassword = emptyPassword,
-                firstName = emptyFirstName,
-                lastName = emptyLastName
+                emptyFirstName = emptyFirstName,
+                emptyLastName = emptyLastName,
+                failedPasswordMatch = failedMatchPassword,
+                emptyConfirmPassword = emptyConfirmPassword
             )
         } else {
             null
@@ -53,9 +60,9 @@ class RegisterUseCaseImpl @Inject constructor(
     }
 
     private fun registerResultForError(repoResult: Result.Error): RegisterResult.Failure {
-        return when (val result = repoResult.error) {
+        return when (repoResult.error) {
             is InvalidCredentialsException -> {
-                RegisterResult.Failure.InvalidCredentials(result.errorMessage ?: "")
+                RegisterResult.Failure.InvalidCredentials
             }
             else -> {
                 RegisterResult.Failure.Unknown

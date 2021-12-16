@@ -7,8 +7,19 @@ package com.olabode.wilson.cyclee.feature_authentication.domain.model
  */
 
 data class RegisterCredentials(
-    val firstName: FirstName = FirstName(""),
-    val lastName: LastName = LastName(""),
-    val email: Email = Email(""),
-    val password: Password = Password(""),
-)
+    val firstName: String = "",
+    val lastName: String = "",
+    val email: String = "",
+    val password: String = "",
+    val confirmPassword: String = ""
+) {
+    companion object {
+        val EMPTY = RegisterCredentials(
+            firstName = "",
+            lastName = "",
+            email = "",
+            password = "",
+            confirmPassword = ""
+        )
+    }
+}

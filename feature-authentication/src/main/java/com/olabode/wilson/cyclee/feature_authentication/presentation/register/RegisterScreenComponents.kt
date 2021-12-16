@@ -14,6 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.olabode.wilson.cyclee.common_ui.ui.getString
 import com.olabode.wilson.cyclee.feature_authentication.R
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.AuthButton
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.PasswordTextField
@@ -30,7 +31,9 @@ import com.olabode.wilson.cyclee.feature_authentication.presentation.components.
 @Composable
 fun RegisterFormContainer(
     modifier: Modifier = Modifier,
-    onNameChanged: (name: String) -> Unit,
+    viewState: RegisterViewState,
+    onFirstNameChanged: (firstName: String) -> Unit,
+    onLastNameChanged: (lastName: String) -> Unit,
     onEmailChanged: (email: String) -> Unit,
     onPasswordChanged: (password: String) -> Unit,
     onConfirmationPasswordChanged: (password: String) -> Unit,
@@ -41,40 +44,61 @@ fun RegisterFormContainer(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
         TextInputField(
             modifier = Modifier.fillMaxWidth(),
-            value = "",
-            label = stringResource(R.string.full_name),
-            onValueChange = onNameChanged
+            value = viewState.credentials.firstName,
+            label = stringResource(R.string.first_name),
+            errorMessage = (viewState as? RegisterViewState.Active)?.firstNameInputErrorMessage
+                ?.getString(),
+            onValueChange = onFirstNameChanged
         )
 
         TextInputField(
             modifier = Modifier.fillMaxWidth(),
-            value = "",
+            value = viewState.credentials.lastName,
+            label = stringResource(R.string.last_name),
+            errorMessage = (viewState as? RegisterViewState.Active)?.lastNameInputErrorMessage
+                ?.getString(),
+            onValueChange = onLastNameChanged
+        )
+
+        TextInputField(
+            modifier = Modifier.fillMaxWidth(),
+            value = viewState.credentials.email,
             label = stringResource(R.string.email),
             style = TextInputFieldStyle(
                 keyboardType = KeyboardType.Email
             ),
+            errorMessage = (viewState as? RegisterViewState.Active)?.emailInputErrorMessage
+                ?.getString(),
             onValueChange = onEmailChanged
         )
 
         PasswordTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = "",
+            value = viewState.credentials.password,
             label = stringResource(R.string.password),
+            errorMessage = (viewState as? RegisterViewState.Active)?.passwordInputErrorMessage
+                ?.getString(),
             onValueChange = onPasswordChanged
         )
 
         PasswordTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = "",
+            value = viewState.credentials.confirmPassword,
             label = stringResource(R.string.confirm_password),
+            errorMessage = (viewState as? RegisterViewState.Active)?.confirmPasswordInputErrorMessage
+                ?.getString(),
             onValueChange = onConfirmationPasswordChanged
         )
+
         Spacer(modifier = Modifier.height(16.dp))
+
         AuthButton(
             text = stringResource(R.string.sign_up),
-            onClick = onSubmitForm
+            onClick = onSubmitForm,
+            enabled = viewState.inputsEnabled
         )
     }
 }
@@ -88,6 +112,8 @@ fun PreviewRegisterFormContainer() {
         onPasswordChanged = {},
         onSubmitForm = {},
         onConfirmationPasswordChanged = {},
-        onNameChanged = {}
+        onFirstNameChanged = {},
+        onLastNameChanged = {},
+        viewState = RegisterViewState.Initial
     )
 }
