@@ -79,7 +79,7 @@ complexity:
   active: true
   ComplexCondition:
     active: true
-    threshold: 4
+    threshold: 8
   ComplexInterface:
     active: false
     threshold: 10
@@ -113,9 +113,9 @@ complexity:
     ignoreAnnotated: []
   LongParameterList:
     active: true
-    functionThreshold: 7
+    functionThreshold: 10
     constructorThreshold: 7
-    ignoreDefaultParameters: false
+    ignoreDefaultParameters: true
     ignoreDataClasses: true
     ignoreAnnotated: []
   MethodOverloading:
@@ -230,7 +230,7 @@ exceptions:
   ThrowingExceptionInMain:
     active: false
   ThrowingExceptionsWithoutMessageOrCause:
-    active: true
+    active: false
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
     exceptions:
       - 'ArrayIndexOutOfBoundsException'
