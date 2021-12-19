@@ -41,8 +41,7 @@ class RegisterUseCaseImplTest {
 
         val mockResponse = RegisterResponse(
             id = "1",
-            "a@mail.com",
-            "11111"
+            "a@mail.com"
         )
 
         val mockResult = Result.Success(mockResponse)
