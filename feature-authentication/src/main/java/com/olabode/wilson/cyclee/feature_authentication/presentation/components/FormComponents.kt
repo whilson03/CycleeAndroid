@@ -92,7 +92,7 @@ fun TextInputField(
 ) {
     Column {
         TextField(
-            modifier = modifier.clip(RoundedCornerShape(4.dp)),
+            modifier = modifier.clip(RoundedCornerShape(8.dp)),
             value = value,
             label = { Text(text = label) },
             onValueChange = onValueChange,
@@ -138,7 +138,7 @@ fun PasswordTextField(
 
     Column {
         TextField(
-            modifier = modifier.clip(RoundedCornerShape(4.dp)),
+            modifier = modifier.clip(RoundedCornerShape(8.dp)),
             value = value,
             onValueChange = onValueChange,
             label = { Text(label) },
@@ -178,7 +178,7 @@ fun ErrorText(
     style: TextStyle = MaterialTheme.typography.caption
 ) {
     Text(
-        modifier = modifier.padding(top = 1.dp),
+        modifier = modifier.padding(top = 1.dp, start = 16.dp),
         text = message,
         color = color,
         style = style

@@ -2,6 +2,7 @@ package com.olabode.wilson.cyclee.feature_authentication.presentation.register
 
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -24,6 +25,12 @@ fun RegisterScreen(
     val scrollState = rememberScrollState()
     val viewModel: RegisterViewModel = hiltViewModel()
     val viewState = viewModel.viewState.collectAsState()
+
+    LaunchedEffect(viewState.value) {
+        if (viewState.value is RegisterViewState.Completed) {
+            onNavigateToVerification()
+        }
+    }
 
     RegisterScreenContent(
         modifier = modifier,

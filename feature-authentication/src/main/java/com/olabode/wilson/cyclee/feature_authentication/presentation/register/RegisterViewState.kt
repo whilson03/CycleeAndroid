@@ -13,7 +13,7 @@ import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterCre
  * A sealed class defining all possible states of our register screen.
  *
  * @property[credentials] The current RegisterCredentials entered by the user.
- * @property[inputsEnabled] If true, the buttons on the login screen can accept clicks,
+ * @property[inputsEnabled] If true, the buttons on the register screen can accept clicks,
  * false otherwise.
  */
 sealed class RegisterViewState(

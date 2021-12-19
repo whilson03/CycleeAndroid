@@ -33,7 +33,7 @@ class AuthenticationRepositoryImpl @Inject constructor(
         return when (result) {
             is NetworkResult.NetworkError -> Result.Error()
             is NetworkResult.GenericError -> Result.Error()
-            is NetworkResult.Success -> Result.Success(result.value.data!!)
+            is NetworkResult.Success -> Result.Success(result.value)
         }
     }
 }

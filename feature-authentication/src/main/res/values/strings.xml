@@ -30,4 +30,5 @@
     <string name="err_empty_email">Please enter an email.</string>
     <string name="err_empty_password">Please enter a password.</string>
     <string name="err_empty_confirm_password">Please confirm your password.</string>
+    <string name="err_invalid_credentials">Invalid credentials</string>
 </resources>

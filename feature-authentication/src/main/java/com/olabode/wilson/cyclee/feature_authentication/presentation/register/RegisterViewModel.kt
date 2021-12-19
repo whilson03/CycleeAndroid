@@ -104,7 +104,7 @@ class RegisterViewModel @Inject constructor(
             is RegisterResult.Failure.InvalidCredentials -> {
                 RegisterViewState.SubmissionError(
                     credentials = currentCredentials,
-                    errorMessage = UIText.StringText(""), // TODO
+                    errorMessage = UIText.ResourceText(R.string.err_invalid_credentials)
                 )
             }
             is RegisterResult.Failure.Unknown -> {
@@ -117,8 +117,6 @@ class RegisterViewModel @Inject constructor(
                 result.toRegisterViewState(currentCredentials)
             }
             is RegisterResult.Success -> {
-                viewModelScope.launch {
-                }
                 RegisterViewState.Completed
             }
         }
