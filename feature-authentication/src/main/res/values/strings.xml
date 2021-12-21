@@ -31,4 +31,6 @@
     <string name="err_empty_password">Please enter a password.</string>
     <string name="err_empty_confirm_password">Please confirm your password.</string>
     <string name="err_invalid_credentials">Invalid credentials</string>
+    <string name="err_unknown">Oops... An unknown error occured.</string>
+    <string name="err_mismatched_passwords">Passwords do not match...</string>
 </resources>

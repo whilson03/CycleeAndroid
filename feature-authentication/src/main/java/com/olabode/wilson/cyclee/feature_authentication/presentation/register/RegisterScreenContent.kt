@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.olabode.wilson.cyclee.common_ui.theme.Orange600
 import com.olabode.wilson.cyclee.feature_authentication.R
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterCredentials
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.AuthHeader
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.AuthHeaderImage
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.AuthQuestionButton
@@ -33,7 +34,7 @@ import com.olabode.wilson.cyclee.feature_authentication.presentation.components.
 fun RegisterScreenContent(
     modifier: Modifier = Modifier,
     scrollState: ScrollState,
-    viewState: RegisterViewState,
+    viewState: RegisterUiState,
     viewModel: RegisterViewModel,
     onNavigateToLogin: () -> Unit
 ) {
@@ -70,7 +71,7 @@ fun RegisterScreenContent(
                 actionText = stringResource(R.string.existing_account_question_action),
                 actionTextColor = Orange600,
                 onClick = onNavigateToLogin,
-                enabled = viewState.inputsEnabled
+                enabled = !viewState.isLoading
             )
         }
     }
@@ -83,7 +84,7 @@ fun PreviewRegisterScreenContent() {
     RegisterScreenContent(
         scrollState = rememberScrollState(),
         onNavigateToLogin = {},
-        viewState = RegisterViewState.Initial,
+        viewState = RegisterUiState(credentials = RegisterCredentials.EMPTY),
         viewModel = viewModel()
     )
 }

@@ -1,7 +1,6 @@
 package com.olabode.wilson.cyclee.feature_authentication.domain.usecase
 
 import com.olabode.wilson.cyclee.core.data.Result
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.InvalidCredentialsException
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterCredentials
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterResult
 import com.olabode.wilson.cyclee.feature_authentication.domain.repository.AuthenticationRepository
@@ -29,12 +28,12 @@ class RegisterUseCaseImpl @Inject constructor(
                 RegisterResult.Success
             }
             is Result.Error -> {
-                registerResultForError(repoResult)
+                RegisterResult.Failure.Error(repoResult.message)
             }
         }
     }
 
-    private fun validateCredentials(credentials: RegisterCredentials): RegisterResult.Failure.EmptyCredentials? {
+    private fun validateCredentials(credentials: RegisterCredentials): RegisterResult.Failure? {
         val emptyEmail = credentials.email.isEmpty()
         val emptyPassword = credentials.password.isEmpty()
         val emptyFirstName = credentials.firstName.isEmpty()
@@ -42,32 +41,22 @@ class RegisterUseCaseImpl @Inject constructor(
         val emptyConfirmPassword = credentials.confirmPassword.isEmpty()
         val failedMatchPassword = credentials.password != credentials.confirmPassword
 
-        return if (emptyEmail || emptyPassword ||
-            emptyFirstName || emptyLastName ||
-            emptyConfirmPassword || failedMatchPassword
-        ) {
+        return when {
+            emptyEmail || emptyPassword || emptyFirstName || emptyLastName ||
+                emptyConfirmPassword -> {
 
-            RegisterResult.Failure.EmptyCredentials(
-                emptyEmail = emptyEmail,
-                emptyPassword = emptyPassword,
-                emptyFirstName = emptyFirstName,
-                emptyLastName = emptyLastName,
-                failedPasswordMatch = failedMatchPassword,
-                emptyConfirmPassword = emptyConfirmPassword
-            )
-        } else {
-            null
-        }
-    }
+                RegisterResult.Failure.EmptyCredentials(
+                    emptyEmail = emptyEmail,
+                    emptyPassword = emptyPassword,
+                    emptyFirstName = emptyFirstName,
+                    emptyLastName = emptyLastName,
+                    failedPasswordMatch = failedMatchPassword,
+                    emptyConfirmPassword = emptyConfirmPassword
+                )
+            }
 
-    private fun registerResultForError(repoResult: Result.Error): RegisterResult.Failure {
-        return when (repoResult.error) {
-            is InvalidCredentialsException -> {
-                RegisterResult.Failure.InvalidCredentials
-            }
-            else -> {
-                RegisterResult.Failure.Unknown
-            }
+            failedMatchPassword -> RegisterResult.Failure.MismatchedPassword
+            else -> null
         }
     }
 }

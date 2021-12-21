@@ -61,7 +61,7 @@ class RegisterViewModelRobot {
      */
     suspend fun expectViewStates(
         action: RegisterViewModelRobot.() -> Unit,
-        viewStates: List<RegisterViewState>,
+        viewStates: List<RegisterUiState>,
     ) = apply {
         viewModel.viewState.test {
             action()

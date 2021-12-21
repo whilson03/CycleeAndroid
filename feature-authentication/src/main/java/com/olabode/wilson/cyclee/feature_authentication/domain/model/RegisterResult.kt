@@ -12,9 +12,9 @@ sealed class RegisterResult {
 
     sealed class Failure : RegisterResult() {
 
-        object InvalidCredentials : Failure()
+        object MismatchedPassword : Failure()
 
-        object Unknown : Failure()
+        data class Error(val errorMessage: String? = null) : Failure()
 
         data class EmptyCredentials(
             val emptyFirstName: Boolean,

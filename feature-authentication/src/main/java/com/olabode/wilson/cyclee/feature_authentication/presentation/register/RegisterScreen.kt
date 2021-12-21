@@ -27,7 +27,7 @@ fun RegisterScreen(
     val viewState = viewModel.viewState.collectAsState()
 
     LaunchedEffect(viewState.value) {
-        if (viewState.value is RegisterViewState.Completed) {
+        if (viewState.value.registrationCompleted) {
             onNavigateToVerification()
         }
     }

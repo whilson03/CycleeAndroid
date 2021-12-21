@@ -1,5 +1,6 @@
 package com.olabode.wilson.cyclee.feature_authentication.presentation.register
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.olabode.wilson.cyclee.common_ui.ui.UIText
@@ -24,72 +25,53 @@ class RegisterViewModel @Inject constructor(
     private val registerUseCase: RegisterUseCase
 ) : ViewModel() {
 
-    private val _viewState: MutableStateFlow<RegisterViewState> =
-        MutableStateFlow(RegisterViewState.Initial)
-    val viewState: StateFlow<RegisterViewState> = _viewState
+    private val _viewState: MutableStateFlow<RegisterUiState> =
+        MutableStateFlow(RegisterUiState(credentials = RegisterCredentials.EMPTY))
+    val viewState: StateFlow<RegisterUiState> = _viewState
 
     fun firstNameChanged(firstName: String) {
-        val currentCredentials = _viewState.value.credentials
-        val currentFirstNameErrorMessage =
-            (_viewState.value as? RegisterViewState.Active)?.firstNameInputErrorMessage
-
-        _viewState.value = RegisterViewState.Active(
-            credentials = currentCredentials.copy(firstName = firstName),
-            firstNameInputErrorMessage = currentFirstNameErrorMessage,
+        val credentials = _viewState.value.credentials.copy(firstName = firstName)
+        _viewState.value = _viewState.value.copy(
+            credentials = credentials,
+            firstNameError = null
         )
     }
 
     fun lastNameChanged(lastName: String) {
-        val currentCredentials = _viewState.value.credentials
-        val currentLastNameErrorMessage =
-            (_viewState.value as? RegisterViewState.Active)?.lastNameInputErrorMessage
-
-        _viewState.value = RegisterViewState.Active(
-            credentials = currentCredentials.copy(lastName = lastName),
-            lastNameInputErrorMessage = currentLastNameErrorMessage,
+        val credentials = _viewState.value.credentials.copy(lastName = lastName)
+        _viewState.value = _viewState.value.copy(
+            credentials = credentials,
+            lastNameError = null
         )
     }
 
     fun emailChanged(email: String) {
-        val currentCredentials = _viewState.value.credentials
-        val currentEmailErrorMessage =
-            (_viewState.value as? RegisterViewState.Active)?.emailInputErrorMessage
-
-        _viewState.value = RegisterViewState.Active(
-            credentials = currentCredentials.copy(email = email),
-            emailInputErrorMessage = currentEmailErrorMessage,
+        val credentials = _viewState.value.credentials.copy(email = email)
+        _viewState.value = _viewState.value.copy(
+            credentials = credentials,
+            emailError = null
         )
     }
 
     fun passwordChanged(password: String) {
-        val currentCredentials = _viewState.value.credentials
-        val currentPasswordErrorMessage =
-            (_viewState.value as? RegisterViewState.Active)?.passwordInputErrorMessage
-
-        _viewState.value = RegisterViewState.Active(
-            credentials = currentCredentials.copy(password = password),
-            passwordInputErrorMessage = currentPasswordErrorMessage,
+        val credentials = _viewState.value.credentials.copy(password = password)
+        _viewState.value = _viewState.value.copy(
+            credentials = credentials,
+            passwordError = null
         )
     }
 
     fun confirmPasswordChanged(password: String) {
-        val currentCredentials = _viewState.value.credentials
-        val currentConfirmPasswordErrorMessage =
-            (_viewState.value as? RegisterViewState.Active)?.confirmPasswordInputErrorMessage
-
-        _viewState.value = RegisterViewState.Active(
-            credentials = currentCredentials.copy(confirmPassword = password),
-            confirmPasswordInputErrorMessage = currentConfirmPasswordErrorMessage,
+        val credentials = _viewState.value.credentials.copy(confirmPassword = password)
+        _viewState.value = _viewState.value.copy(
+            credentials = credentials,
+            confirmPasswordError = null
         )
     }
 
     fun registerButtonClicked() {
         val currentCredentials = _viewState.value.credentials
-
-        _viewState.value = RegisterViewState.Submitting(
-            credentials = currentCredentials,
-        )
-
+        _viewState.value = _viewState.value.copy(isLoading = true)
         viewModelScope.launch {
             val result = registerUseCase(currentCredentials)
             handleRegisterResult(result, currentCredentials)
@@ -101,46 +83,64 @@ class RegisterViewModel @Inject constructor(
         currentCredentials: RegisterCredentials,
     ) {
         _viewState.value = when (result) {
-            is RegisterResult.Failure.InvalidCredentials -> {
-                RegisterViewState.SubmissionError(
-                    credentials = currentCredentials,
-                    errorMessage = UIText.ResourceText(R.string.err_invalid_credentials)
+            is RegisterResult.Failure.Error -> {
+                Log.e("RESULT", result.errorMessage ?: "NO MESSAGE")
+                _viewState.value.copy(
+                    errorMessage =
+                    getErrorMessageOrUnknownError(result.errorMessage),
+                    isLoading = false
                 )
             }
-            is RegisterResult.Failure.Unknown -> {
-                RegisterViewState.SubmissionError(
-                    credentials = currentCredentials,
-                    errorMessage = UIText.StringText(""), // TODO
+
+            is RegisterResult.Failure.MismatchedPassword -> {
+                _viewState.value.copy(
+                    errorMessage = UIText.ResourceText(R.string.err_mismatched_passwords),
+                    isLoading = false
                 )
             }
+
             is RegisterResult.Failure.EmptyCredentials -> {
-                result.toRegisterViewState(currentCredentials)
+                result.toRegisterUiState(currentCredentials)
             }
+
             is RegisterResult.Success -> {
-                RegisterViewState.Completed
+                _viewState.value.copy(
+                    credentials = RegisterCredentials.EMPTY,
+                    isLoading = false,
+                    registrationCompleted = true
+                )
             }
+        }
+    }
+
+    private fun getErrorMessageOrUnknownError(message: String?): UIText {
+        return if (message == null) {
+            UIText.ResourceText(R.string.err_unknown)
+        } else {
+            UIText.StringText(message)
         }
     }
 }
 
 private fun RegisterResult.Failure.EmptyCredentials
-.toRegisterViewState(credentials: RegisterCredentials): RegisterViewState {
+.toRegisterUiState(credentials: RegisterCredentials): RegisterUiState {
 
-    return RegisterViewState.Active(
+    return RegisterUiState(
         credentials = credentials,
-        firstNameInputErrorMessage = UIText.ResourceText(R.string.err_empty_first_name)
+        firstNameError = UIText.ResourceText(R.string.err_empty_first_name)
             .takeIf { this.emptyFirstName },
 
-        lastNameInputErrorMessage = UIText.ResourceText(R.string.err_empty_lasst_name)
+        lastNameError = UIText.ResourceText(R.string.err_empty_lasst_name)
             .takeIf { this.emptyLastName },
 
-        emailInputErrorMessage = UIText.ResourceText(R.string.err_empty_email)
+        emailError = UIText.ResourceText(R.string.err_empty_email)
             .takeIf { this.emptyEmail },
 
-        passwordInputErrorMessage = UIText.ResourceText(R.string.err_empty_password)
+        passwordError = UIText.ResourceText(R.string.err_empty_password)
             .takeIf { this.emptyPassword },
 
-        confirmPasswordInputErrorMessage = UIText.ResourceText(R.string.err_empty_first_name)
-            .takeIf { this.emptyConfirmPassword }
+        confirmPasswordError = UIText.ResourceText(R.string.err_empty_first_name)
+            .takeIf { this.emptyConfirmPassword },
+        isLoading = false
     )
 }
