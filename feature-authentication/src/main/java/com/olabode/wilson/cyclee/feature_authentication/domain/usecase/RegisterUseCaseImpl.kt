@@ -46,11 +46,10 @@ class RegisterUseCaseImpl @Inject constructor(
                 emptyConfirmPassword -> {
 
                 RegisterResult.Failure.EmptyCredentials(
-                    emptyEmail = emptyEmail,
-                    emptyPassword = emptyPassword,
                     emptyFirstName = emptyFirstName,
                     emptyLastName = emptyLastName,
-                    failedPasswordMatch = failedMatchPassword,
+                    emptyEmail = emptyEmail,
+                    emptyPassword = emptyPassword,
                     emptyConfirmPassword = emptyConfirmPassword
                 )
             }

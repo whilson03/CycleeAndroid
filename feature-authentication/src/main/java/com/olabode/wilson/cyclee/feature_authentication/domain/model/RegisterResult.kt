@@ -21,7 +21,6 @@ sealed class RegisterResult {
             val emptyLastName: Boolean,
             val emptyEmail: Boolean,
             val emptyPassword: Boolean,
-            val failedPasswordMatch: Boolean,
             val emptyConfirmPassword: Boolean
         ) : Failure()
     }

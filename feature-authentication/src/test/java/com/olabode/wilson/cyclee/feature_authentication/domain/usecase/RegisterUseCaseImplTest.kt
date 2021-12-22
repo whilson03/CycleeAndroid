@@ -3,7 +3,6 @@ package com.olabode.wilson.cyclee.feature_authentication.domain.usecase
 import com.google.common.truth.Truth.assertThat
 import com.olabode.wilson.cyclee.core.data.Result
 import com.olabode.wilson.cyclee.feature_authentication.data.network.response.RegisterResponse
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.InvalidCredentialsException
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterCredentials
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterResult
 import com.olabode.wilson.cyclee.feature_authentication.fakes.FakeAuthRepository
@@ -20,14 +19,6 @@ import org.junit.Test
 
 class RegisterUseCaseImplTest {
 
-    private val defaultCredentials = RegisterCredentials(
-        firstName = "aaaaa",
-        lastName = "aaaaa",
-        email = "a@mail.com",
-        password = "a",
-        confirmPassword = "a"
-    )
-
     private lateinit var authRepository: FakeAuthRepository
 
     @Before
@@ -38,6 +29,13 @@ class RegisterUseCaseImplTest {
     @ExperimentalCoroutinesApi
     @Test
     fun testSuccessfulRegistration() = runBlockingTest {
+        val credentials = RegisterCredentials(
+            firstName = "aaaaa",
+            lastName = "aaaaa",
+            email = "a@mail.com",
+            password = "a",
+            confirmPassword = "a"
+        )
 
         val mockResponse = RegisterResponse(
             id = "1",
@@ -48,54 +46,65 @@ class RegisterUseCaseImplTest {
 
         authRepository.apply {
             mockRegistration(
-                defaultCredentials,
+                credentials,
                 mockResult
             )
         }
 
         val usecase = RegisterUseCaseImpl(authRepository.mock)
-        val result = usecase(defaultCredentials)
+        val result = usecase(credentials)
 
         assertThat(result).isEqualTo(RegisterResult.Success)
     }
 
     @Test
-    fun testUnknownFailureRegistration() = runBlockingTest {
+    fun testEmptyCredentialFailureRegistration() = runBlockingTest {
+        val credentials = RegisterCredentials.EMPTY
 
-        val mockResult: Result<RegisterResponse> = Result.Error(
-            Throwable("something went wrong"), ""
-        )
+        val mockResult: Result<RegisterResponse> = Result.Error()
 
         authRepository.apply {
             mockRegistration(
-                defaultCredentials,
+                credentials,
                 mockResult
             )
         }
 
         val usecase = RegisterUseCaseImpl(authRepository.mock)
-        val result = usecase(defaultCredentials)
+        val result = usecase(credentials)
 
-        // assertThat(result).isEqualTo(RegisterResult.Failure.Unknown)
+        assertThat(result).isEqualTo(
+            RegisterResult.Failure.EmptyCredentials(
+                emptyFirstName = true,
+                emptyLastName = true,
+                emptyEmail = true,
+                emptyPassword = true,
+                emptyConfirmPassword = true
+            )
+        )
     }
 
     @Test
-    fun testInvalidCredentialsRegistration() = runBlockingTest {
-
-        val mockResult: Result<RegisterResponse> = Result.Error(
-            InvalidCredentialsException(), ""
+    fun testMismatchedPasswordsFailureRegistration() = runBlockingTest {
+        val credentials = RegisterCredentials(
+            firstName = "aaa",
+            lastName = "aaa",
+            email = "email",
+            password = "aa",
+            confirmPassword = "a"
         )
+        val mockResult: Result<RegisterResponse> = Result.Error()
 
         authRepository.apply {
             mockRegistration(
-                defaultCredentials,
+                credentials,
                 mockResult
             )
         }
 
         val usecase = RegisterUseCaseImpl(authRepository.mock)
-        val result = usecase(defaultCredentials)
+        val result = usecase(credentials)
 
-        // assertThat(result).isEqualTo(RegisterResult.Failure.InvalidCredentials)
+        assertThat(result).isEqualTo(RegisterResult.Failure.MismatchedPassword)
     }
 }
