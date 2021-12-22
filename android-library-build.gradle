@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdk = Android.compileSdk
@@ -31,6 +30,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
         useIR = true
+
+        freeCompilerArgs += [
+                '-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi',
+        ]
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Compose.composeVersion
@@ -38,6 +41,11 @@ android {
     packagingOptions {
         exclude("META-INF/AL2.0")
         exclude("META-INF/LGPL2.1")
+    }
+
+    kapt {
+        correctErrorTypes = true
+        useBuildCache = true
     }
 }
 
@@ -59,9 +67,10 @@ dependencies {
     implementation(Google.material)
     implementation(Libs.coil)
 
-    testImplementation(Junit.junit4)
+    testImplementation(Tests.junit4)
     androidTestImplementation(ComposeTest.uiTestJunit4)
     androidTestImplementation(HiltTest.hiltAndroidTesting)
     kaptAndroidTest(Hilt.compiler)
     debugImplementation(ComposeTest.uiTestManifest)
+    testImplementation(Tests.turbine)
 }

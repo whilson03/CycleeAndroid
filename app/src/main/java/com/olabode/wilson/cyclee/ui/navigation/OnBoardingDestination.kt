@@ -10,6 +10,7 @@ fun NavGraphBuilder.addOnBoardingGraph(navController: NavController) {
     composable(route = Screen.OnBoarding.route) {
         OnBoardingScreen(
             openAuthScreen = {
+                navController.popBackStack()
                 navController.navigate(Screen.Authentication.route)
             }
         )

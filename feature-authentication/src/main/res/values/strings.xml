@@ -22,4 +22,15 @@
     <string name="password_recovery_header">Password Recovery</string>
     <string name="create">Create</string>
     <string name="create_new_password">Create a new password</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+
+    <string name="err_empty_first_name">Please enter your firstname</string>
+    <string name="err_empty_last_name">Please enter your lastname</string>
+    <string name="err_empty_email">Please enter an email.</string>
+    <string name="err_empty_password">Please enter a password.</string>
+    <string name="err_empty_confirm_password">Please confirm your password.</string>
+    <string name="err_invalid_credentials">Invalid credentials</string>
+    <string name="err_unknown">Oops... An unknown error occured.</string>
+    <string name="err_mismatched_passwords">Passwords do not match...</string>
 </resources>

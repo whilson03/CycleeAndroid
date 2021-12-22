@@ -10,6 +10,7 @@ object Modules {
     const val commonUI = ":common-ui"
     const val components = ":components"
     const val navigation = ":navigation"
+    const val networking = ":networking"
 
     //features
     const val onBoarding = ":feature-onboarding"

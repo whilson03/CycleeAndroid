@@ -38,7 +38,9 @@ fun NavGraphBuilder.addAuthGraph(navController: NavController) {
                     navController.popBackStack()
                 },
                 onNavigateToVerification = {
-                    navController.navigate(AuthScreen.Verification.route)
+                    navController.navigate(AuthScreen.Verification.route) {
+                        popUpTo(AuthScreen.Login.route)
+                    }
                 }
             )
         }

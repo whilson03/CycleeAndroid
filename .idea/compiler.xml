@@ -10,6 +10,7 @@
       <module name="Cyclee.feature-onboarding" target="11" />
       <module name="Cyclee.feature_auth.ui-login" target="11" />
       <module name="Cyclee.navigation" target="11" />
+      <module name="Cyclee.networking" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

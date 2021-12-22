@@ -9,8 +9,10 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.compose.rememberNavController
 import com.olabode.wilson.cyclee.ui.navigation.AppNavigation
 import com.olabode.wilson.cyclee.ui.theme.CycleeTheme
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.InternalCoroutinesApi
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     @InternalCoroutinesApi

@@ -70,6 +70,7 @@ fun AuthQuestionButton(
     question: String,
     actionText: String,
     actionTextColor: Color,
+    enabled: Boolean = true,
     onClick: () -> Unit
 ) {
     val annotatedText = buildAnnotatedString {
@@ -89,7 +90,7 @@ fun AuthQuestionButton(
         }
     }
 
-    TextButton(onClick = onClick, modifier = modifier) {
+    TextButton(onClick = onClick, modifier = modifier, enabled = enabled) {
         Text(
             text = annotatedText,
             textAlign = TextAlign.Center,
@@ -114,7 +115,9 @@ fun AuthHeaderImage(
     @DrawableRes headerImage: Int
 ) {
     Image(
-        modifier = modifier.fillMaxWidth().wrapContentHeight(Alignment.Top),
+        modifier = modifier
+            .fillMaxWidth()
+            .wrapContentHeight(Alignment.Top),
         painter = painterResource(id = headerImage),
         contentDescription = "",
         contentScale = ContentScale.Crop
