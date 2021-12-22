@@ -1,6 +1,5 @@
 package com.olabode.wilson.cyclee.feature_authentication.presentation.register
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.olabode.wilson.cyclee.common_ui.ui.UIText
@@ -33,7 +32,7 @@ class RegisterViewModel @Inject constructor(
         val credentials = _viewState.value.credentials.copy(firstName = firstName)
         _viewState.value = _viewState.value.copy(
             credentials = credentials,
-            firstNameError = null
+            firstNameErrorMessage = null
         )
     }
 
@@ -41,7 +40,7 @@ class RegisterViewModel @Inject constructor(
         val credentials = _viewState.value.credentials.copy(lastName = lastName)
         _viewState.value = _viewState.value.copy(
             credentials = credentials,
-            lastNameError = null
+            lastNameErrorMessage = null
         )
     }
 
@@ -49,7 +48,7 @@ class RegisterViewModel @Inject constructor(
         val credentials = _viewState.value.credentials.copy(email = email)
         _viewState.value = _viewState.value.copy(
             credentials = credentials,
-            emailError = null
+            emailErrorMessage = null
         )
     }
 
@@ -57,7 +56,7 @@ class RegisterViewModel @Inject constructor(
         val credentials = _viewState.value.credentials.copy(password = password)
         _viewState.value = _viewState.value.copy(
             credentials = credentials,
-            passwordError = null
+            passwordErrorMessage = null
         )
     }
 
@@ -65,7 +64,7 @@ class RegisterViewModel @Inject constructor(
         val credentials = _viewState.value.credentials.copy(confirmPassword = password)
         _viewState.value = _viewState.value.copy(
             credentials = credentials,
-            confirmPasswordError = null
+            confirmPasswordErrorMessage = null
         )
     }
 
@@ -84,7 +83,6 @@ class RegisterViewModel @Inject constructor(
     ) {
         _viewState.value = when (result) {
             is RegisterResult.Failure.Error -> {
-                Log.e("RESULT", result.errorMessage ?: "NO MESSAGE")
                 _viewState.value.copy(
                     errorMessage =
                     getErrorMessageOrUnknownError(result.errorMessage),
@@ -127,19 +125,19 @@ private fun RegisterResult.Failure.EmptyCredentials
 
     return RegisterUiState(
         credentials = credentials,
-        firstNameError = UIText.ResourceText(R.string.err_empty_first_name)
+        firstNameErrorMessage = UIText.ResourceText(R.string.err_empty_first_name)
             .takeIf { this.emptyFirstName },
 
-        lastNameError = UIText.ResourceText(R.string.err_empty_lasst_name)
+        lastNameErrorMessage = UIText.ResourceText(R.string.err_empty_last_name)
             .takeIf { this.emptyLastName },
 
-        emailError = UIText.ResourceText(R.string.err_empty_email)
+        emailErrorMessage = UIText.ResourceText(R.string.err_empty_email)
             .takeIf { this.emptyEmail },
 
-        passwordError = UIText.ResourceText(R.string.err_empty_password)
+        passwordErrorMessage = UIText.ResourceText(R.string.err_empty_password)
             .takeIf { this.emptyPassword },
 
-        confirmPasswordError = UIText.ResourceText(R.string.err_empty_first_name)
+        confirmPasswordErrorMessage = UIText.ResourceText(R.string.err_empty_confirm_password)
             .takeIf { this.emptyConfirmPassword },
         isLoading = false
     )

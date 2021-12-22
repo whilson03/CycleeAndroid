@@ -13,10 +13,10 @@ data class RegisterUiState(
     val isLoading: Boolean = false,
     val registrationCompleted: Boolean = false,
     val credentials: RegisterCredentials,
-    val firstNameError: UIText? = null,
-    val lastNameError: UIText? = null,
-    val emailError: UIText? = null,
-    val passwordError: UIText? = null,
-    val confirmPasswordError: UIText? = null,
+    val firstNameErrorMessage: UIText? = null,
+    val lastNameErrorMessage: UIText? = null,
+    val emailErrorMessage: UIText? = null,
+    val passwordErrorMessage: UIText? = null,
+    val confirmPasswordErrorMessage: UIText? = null,
     val errorMessage: UIText? = null
 )

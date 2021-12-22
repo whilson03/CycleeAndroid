@@ -26,7 +26,7 @@
     <string name="last_name">Last name</string>
 
     <string name="err_empty_first_name">Please enter your firstname</string>
-    <string name="err_empty_lasst_name">Please enter your lastname</string>
+    <string name="err_empty_last_name">Please enter your lastname</string>
     <string name="err_empty_email">Please enter an email.</string>
     <string name="err_empty_password">Please enter a password.</string>
     <string name="err_empty_confirm_password">Please confirm your password.</string>

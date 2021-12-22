@@ -50,7 +50,7 @@ fun RegisterFormContainer(
             modifier = Modifier.fillMaxWidth(),
             value = viewState.credentials.firstName,
             label = stringResource(R.string.first_name),
-            errorMessage = viewState.firstNameError?.getString(),
+            errorMessage = viewState.firstNameErrorMessage?.getString(),
             onValueChange = onFirstNameChanged
         )
 
@@ -58,7 +58,7 @@ fun RegisterFormContainer(
             modifier = Modifier.fillMaxWidth(),
             value = viewState.credentials.lastName,
             label = stringResource(R.string.last_name),
-            errorMessage = viewState.lastNameError?.getString(),
+            errorMessage = viewState.lastNameErrorMessage?.getString(),
             onValueChange = onLastNameChanged
         )
 
@@ -69,7 +69,7 @@ fun RegisterFormContainer(
             style = TextInputFieldStyle(
                 keyboardType = KeyboardType.Email
             ),
-            errorMessage = viewState.emailError?.getString(),
+            errorMessage = viewState.emailErrorMessage?.getString(),
             onValueChange = onEmailChanged
         )
 
@@ -77,7 +77,7 @@ fun RegisterFormContainer(
             modifier = Modifier.fillMaxWidth(),
             value = viewState.credentials.password,
             label = stringResource(R.string.password),
-            errorMessage = viewState.passwordError?.getString(),
+            errorMessage = viewState.passwordErrorMessage?.getString(),
             onValueChange = onPasswordChanged
         )
 
@@ -85,7 +85,7 @@ fun RegisterFormContainer(
             modifier = Modifier.fillMaxWidth(),
             value = viewState.credentials.confirmPassword,
             label = stringResource(R.string.confirm_password),
-            errorMessage = viewState.confirmPasswordError?.getString(),
+            errorMessage = viewState.confirmPasswordErrorMessage?.getString(),
             onValueChange = onConfirmationPasswordChanged
         )
 
