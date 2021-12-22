@@ -4,6 +4,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -26,9 +28,11 @@ fun RegisterScreen(
     val viewModel: RegisterViewModel = hiltViewModel()
     val viewState = viewModel.viewState.collectAsState()
 
+    val currentOnNavigateToVerification by rememberUpdatedState(onNavigateToVerification)
+
     LaunchedEffect(viewState.value) {
         if (viewState.value.registrationCompleted) {
-            onNavigateToVerification()
+            currentOnNavigateToVerification()
         }
     }
 
