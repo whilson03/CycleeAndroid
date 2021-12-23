@@ -1,7 +1,7 @@
 package com.olabode.wilson.cyclee.networking.di
 
 import com.olabode.wilson.cyclee.networking.BuildConfig
-import com.olabode.wilson.cyclee.networking.constants.Constants
+import com.olabode.wilson.cyclee.networking.constants.NetworkConstants
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -56,7 +56,7 @@ object NetworkingModule {
     @Provides
     fun provideRetrofitBuilder(moshi: Moshi, okHttpClient: OkHttpClient): Retrofit.Builder {
         return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl(NetworkConstants.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
     }

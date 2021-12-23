@@ -6,6 +6,7 @@ package com.olabode.wilson.cyclee.networking.constants
  * EMAIL: whilson03@gmail.com
  */
 
-object Constants {
+object NetworkConstants {
     const val BASE_URL = "http://10.0.2.2:3000/"
+    const val BASE_AUTH_URL = "/api/auth"
 }
