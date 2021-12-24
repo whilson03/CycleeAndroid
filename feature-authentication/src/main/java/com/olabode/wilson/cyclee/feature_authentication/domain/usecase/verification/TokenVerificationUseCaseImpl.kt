@@ -16,6 +16,13 @@ class TokenVerificationUseCaseImpl @Inject constructor(
 ) : TokenVerificationUseCase {
 
     override suspend fun invoke(token: VerificationToken): Result<String> {
-        TODO("Not yet implemented")
+        return when (val result = authenticationRepository.verifyToken(token)) {
+            is Result.Success -> {
+                Result.Success(result.data)
+            }
+            is Result.Error -> {
+                Result.Error(message = result.message)
+            }
+        }
     }
 }
