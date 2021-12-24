@@ -5,6 +5,7 @@ import com.olabode.wilson.cyclee.core.data.Result
 import com.olabode.wilson.cyclee.feature_authentication.data.network.response.RegisterResponse
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterCredentials
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterResult
+import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.register.RegisterUseCaseImpl
 import com.olabode.wilson.cyclee.feature_authentication.fakes.FakeAuthRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest

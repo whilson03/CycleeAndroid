@@ -2,8 +2,8 @@ package com.olabode.wilson.cyclee.feature_authentication.di
 
 import com.olabode.wilson.cyclee.feature_authentication.data.repository.AuthenticationRepositoryImpl
 import com.olabode.wilson.cyclee.feature_authentication.domain.repository.AuthenticationRepository
-import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.RegisterUseCase
-import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.RegisterUseCaseImpl
+import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.register.RegisterUseCase
+import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.register.RegisterUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

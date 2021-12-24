@@ -1,4 +1,4 @@
-package com.olabode.wilson.cyclee.feature_authentication.domain.usecase
+package com.olabode.wilson.cyclee.feature_authentication.domain.usecase.register
 
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterCredentials
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterResult
