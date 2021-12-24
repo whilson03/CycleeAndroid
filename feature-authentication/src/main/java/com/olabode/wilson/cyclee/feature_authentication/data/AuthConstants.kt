@@ -10,5 +10,5 @@ internal object AuthConstants {
     const val ERR_EMPTY_TOKEN = "Token can't be blank."
     const val ERR_INVALID_TOKEN = "Token is invalid."
 
-    const val TOKEN_LENGTH = 6
+    const val TOKEN_LENGTH = 5
 }
