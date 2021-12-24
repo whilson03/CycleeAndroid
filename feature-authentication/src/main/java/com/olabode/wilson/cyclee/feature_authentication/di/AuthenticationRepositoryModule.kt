@@ -4,6 +4,8 @@ import com.olabode.wilson.cyclee.feature_authentication.data.repository.Authenti
 import com.olabode.wilson.cyclee.feature_authentication.domain.repository.AuthenticationRepository
 import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.register.RegisterUseCase
 import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.register.RegisterUseCaseImpl
+import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.verification.VerificationUseCase
+import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.verification.VerificationUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -28,4 +30,9 @@ abstract class AuthenticationRepositoryModule {
     abstract fun bindRegisterUseCase(
         registerUseCaseImpl: RegisterUseCaseImpl
     ): RegisterUseCase
+
+    @Binds
+    abstract fun bindTokenVerificationUseCase(
+        verificationUseCaseImpl: VerificationUseCaseImpl
+    ): VerificationUseCase
 }
