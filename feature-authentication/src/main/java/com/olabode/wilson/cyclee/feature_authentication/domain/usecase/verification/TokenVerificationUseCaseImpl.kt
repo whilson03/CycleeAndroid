@@ -11,9 +11,9 @@ import javax.inject.Inject
  * EMAIL: whilson03@gmail.com
  */
 
-class VerificationUseCaseImpl @Inject constructor(
+class TokenVerificationUseCaseImpl @Inject constructor(
     private val authenticationRepository: AuthenticationRepository
-) : VerificationUseCase {
+) : TokenVerificationUseCase {
 
     override suspend fun invoke(token: VerificationToken): Result<String> {
         TODO("Not yet implemented")

@@ -9,7 +9,7 @@ import com.olabode.wilson.cyclee.feature_authentication.domain.model.verificatio
  * EMAIL: whilson03@gmail.com
  */
 
-interface VerificationUseCase {
+interface TokenVerificationUseCase {
 
     suspend operator fun invoke(
         token: VerificationToken,

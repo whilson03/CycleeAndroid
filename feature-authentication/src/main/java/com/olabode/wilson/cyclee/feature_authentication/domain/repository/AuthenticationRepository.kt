@@ -17,7 +17,7 @@ interface AuthenticationRepository {
         credentials: RegisterCredentials
     ): Result<RegisterResponse>
 
-    suspend fun verify(
+    suspend fun verifyToken(
         token: VerificationToken
     ): Result<String>
 }

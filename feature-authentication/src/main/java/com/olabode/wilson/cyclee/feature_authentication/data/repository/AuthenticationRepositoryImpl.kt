@@ -39,7 +39,7 @@ class AuthenticationRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun verify(token: VerificationToken): Result<String> {
+    override suspend fun verifyToken(token: VerificationToken): Result<String> {
         val result = safeApiCall(Dispatchers.IO) { authApi.verifyToken(token.token) }
 
         return when (result) {
