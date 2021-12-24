@@ -1,7 +1,7 @@
 package com.olabode.wilson.cyclee.feature_authentication.fakes
 
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterCredentials
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterResult
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterCredentials
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterResult
 import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.RegisterUseCase
 import io.mockk.coEvery
 import io.mockk.mockk

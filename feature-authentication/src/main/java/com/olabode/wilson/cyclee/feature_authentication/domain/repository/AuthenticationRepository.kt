@@ -2,7 +2,7 @@ package com.olabode.wilson.cyclee.feature_authentication.domain.repository
 
 import com.olabode.wilson.cyclee.core.data.Result
 import com.olabode.wilson.cyclee.feature_authentication.data.network.response.RegisterResponse
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterCredentials
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterCredentials
 
 /**
  * CREATED BY: ADEYORIJU OLABODE WILSON

@@ -4,7 +4,7 @@ import com.olabode.wilson.cyclee.core.data.Result
 import com.olabode.wilson.cyclee.feature_authentication.data.AuthApiService
 import com.olabode.wilson.cyclee.feature_authentication.data.network.request.CreateAccountRequest
 import com.olabode.wilson.cyclee.feature_authentication.data.network.response.RegisterResponse
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterCredentials
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterCredentials
 import com.olabode.wilson.cyclee.feature_authentication.domain.repository.AuthenticationRepository
 import com.olabode.wilson.cyclee.networking.domain.models.NetworkResult
 import com.olabode.wilson.cyclee.networking.utils.safeApiCall

@@ -1,4 +1,4 @@
-package com.olabode.wilson.cyclee.feature_authentication.domain.model
+package com.olabode.wilson.cyclee.feature_authentication.domain.model.register
 
 /**
  * CREATED BY: ADEYORIJU OLABODE WILSON

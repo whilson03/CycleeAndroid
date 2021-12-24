@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.olabode.wilson.cyclee.common_ui.ui.UIText
 import com.olabode.wilson.cyclee.feature_authentication.R
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterCredentials
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterResult
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterCredentials
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterResult
 import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.RegisterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

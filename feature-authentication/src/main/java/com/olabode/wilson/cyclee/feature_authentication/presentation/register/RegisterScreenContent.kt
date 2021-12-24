@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.olabode.wilson.cyclee.common_ui.theme.Orange600
 import com.olabode.wilson.cyclee.feature_authentication.R
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterCredentials
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterCredentials
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.AuthHeader
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.AuthHeaderImage
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.AuthQuestionButton

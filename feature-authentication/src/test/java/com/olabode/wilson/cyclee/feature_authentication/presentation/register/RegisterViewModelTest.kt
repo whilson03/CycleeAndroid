@@ -4,8 +4,8 @@ import com.olabode.wilson.cyclee.common_ui.ui.UIText
 import com.olabode.wilson.cyclee.feature_authentication.CoroutinesTestRule
 import com.olabode.wilson.cyclee.feature_authentication.R
 import com.olabode.wilson.cyclee.feature_authentication.ThreadExceptionHandlerTestRule
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterCredentials
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterResult
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterCredentials
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterResult
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Rule

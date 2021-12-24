@@ -1,7 +1,7 @@
 package com.olabode.wilson.cyclee.feature_authentication.presentation.register
 
 import com.olabode.wilson.cyclee.common_ui.ui.UIText
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterCredentials
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterCredentials
 
 /**
  * CREATED BY: ADEYORIJU OLABODE WILSON
