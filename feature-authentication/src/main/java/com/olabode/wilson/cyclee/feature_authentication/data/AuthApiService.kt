@@ -2,8 +2,8 @@ package com.olabode.wilson.cyclee.feature_authentication.data
 
 import com.olabode.wilson.cyclee.feature_authentication.data.network.request.CreateAccountRequest
 import com.olabode.wilson.cyclee.feature_authentication.data.network.response.RegisterResponse
-import com.olabode.wilson.cyclee.feature_authentication.data.network.response.TokenResponse
 import com.olabode.wilson.cyclee.networking.constants.NetworkConstants
+import com.olabode.wilson.cyclee.networking.domain.models.BasicApiResponse
 import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -26,7 +26,7 @@ interface AuthApiService {
     @POST("$authPath/verify")
     suspend fun verifyToken(
         @Field("token") token: String
-    ): TokenResponse
+    ): BasicApiResponse
 
     companion object {
         private const val authPath = NetworkConstants.BASE_AUTH_URL
