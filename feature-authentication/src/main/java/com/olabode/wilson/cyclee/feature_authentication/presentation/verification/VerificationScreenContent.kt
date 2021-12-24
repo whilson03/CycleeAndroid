@@ -71,7 +71,7 @@ fun VerificationScreenContent(
             ) {
                 TitleAndMailSection(email = uiState.email)
 
-                PinView(onComplete = onTokenChanged)
+                PinView(onValueChanged = onTokenChanged)
 
                 VerificationBottomSection(
                     isResendButtonEnabled = isResendButtonEnabled,

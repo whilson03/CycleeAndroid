@@ -183,7 +183,7 @@ fun BuildTextField(
 fun PinView(
     modifier: Modifier = Modifier,
     noOfFields: Int = 5,
-    onComplete: (value: String) -> Unit
+    onValueChanged: (value: String) -> Unit
 ) {
     Surface {
         Box(modifier = modifier, contentAlignment = Alignment.Center) {
@@ -217,10 +217,7 @@ fun PinView(
                             verificationCode += it.toString()
                             enteredPinCounter++
                             nextFocus.requestFocus()
-                        }
-
-                        if (noOfFields == verificationCode.length) {
-                            onComplete(verificationCode)
+                            onValueChanged(verificationCode)
                         }
                     },
                     onDeleteClicked = {
@@ -239,6 +236,7 @@ fun PinView(
                                 }
 
                             nextFocus.requestFocus()
+                            onValueChanged(verificationCode)
                         }
                     }
                 )

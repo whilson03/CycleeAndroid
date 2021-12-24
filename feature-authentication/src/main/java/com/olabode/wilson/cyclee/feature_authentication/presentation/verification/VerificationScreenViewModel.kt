@@ -1,5 +1,6 @@
 package com.olabode.wilson.cyclee.feature_authentication.presentation.verification
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.olabode.wilson.cyclee.feature_authentication.data.AuthConstants
 import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.verification.TokenVerificationUseCase
@@ -30,6 +31,7 @@ class VerificationScreenViewModel @Inject constructor(
             token = newToken,
             isSendButtonEnabled = newToken.token.length == AuthConstants.TOKEN_LENGTH
         )
+        Log.e("NEW STATE", uiState.value.toString())
     }
 
     fun onResendToken() {
