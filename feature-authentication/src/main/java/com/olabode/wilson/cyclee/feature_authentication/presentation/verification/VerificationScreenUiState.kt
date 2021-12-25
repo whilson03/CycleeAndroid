@@ -1,5 +1,6 @@
 package com.olabode.wilson.cyclee.feature_authentication.presentation.verification
 
+import com.olabode.wilson.cyclee.common_ui.ui.UIText
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationToken
 
 /**
@@ -10,7 +11,8 @@ import com.olabode.wilson.cyclee.feature_authentication.domain.model.verificatio
 
 data class VerificationScreenUiState(
     val token: VerificationToken = VerificationToken(""),
-    val email: String = "",
+    val email: UIText = UIText.StringText(""),
+    val errorMessage: UIText? = null,
     val isRetryAvailable: Boolean = false,
     val isSendButtonEnabled: Boolean = false
 )

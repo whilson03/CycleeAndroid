@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.olabode.wilson.cyclee.common_ui.theme.Orange600
+import com.olabode.wilson.cyclee.common_ui.ui.getString
 import com.olabode.wilson.cyclee.feature_authentication.R
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.AuthButton
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.AuthHeaderImage
@@ -69,7 +70,7 @@ fun VerificationScreenContent(
                 ),
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                TitleAndMailSection(email = uiState.email)
+                TitleAndMailSection(email = uiState.email.getString())
 
                 PinView(onValueChanged = onTokenChanged)
 

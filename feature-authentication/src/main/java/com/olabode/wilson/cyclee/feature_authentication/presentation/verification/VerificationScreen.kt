@@ -16,6 +16,7 @@ fun VerificationScreen() {
 
     val viewModel: VerificationScreenViewModel = hiltViewModel()
     val uiState = viewModel.uiState.collectAsState()
+    val timerState = viewModel.timerState.timerState.collectAsState()
 
     VerificationScreenContent(
         uiState = uiState.value,
