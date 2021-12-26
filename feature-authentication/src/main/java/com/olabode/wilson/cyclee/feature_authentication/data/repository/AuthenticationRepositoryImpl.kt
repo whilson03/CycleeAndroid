@@ -5,7 +5,7 @@ import com.olabode.wilson.cyclee.feature_authentication.data.AuthApiService
 import com.olabode.wilson.cyclee.feature_authentication.data.network.request.CreateAccountRequest
 import com.olabode.wilson.cyclee.feature_authentication.data.network.response.RegisterResponse
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterCredentials
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationToken
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationCredentials
 import com.olabode.wilson.cyclee.feature_authentication.domain.repository.AuthenticationRepository
 import com.olabode.wilson.cyclee.networking.constants.NetworkConstants
 import com.olabode.wilson.cyclee.networking.domain.models.NetworkResult
@@ -39,8 +39,13 @@ class AuthenticationRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun verifyToken(token: VerificationToken): Result<String> {
-        val result = safeApiCall(Dispatchers.IO) { authApi.verifyToken(token.token) }
+    override suspend fun verifyToken(credentials: VerificationCredentials): Result<String> {
+        val result = safeApiCall(Dispatchers.IO) {
+            authApi.verifyToken(
+                token = credentials.token,
+                credentials.email
+            )
+        }
 
         return when (result) {
             is NetworkResult.NetworkError -> Result.Error()

@@ -2,7 +2,7 @@ package com.olabode.wilson.cyclee.feature_authentication.domain.usecase.verifica
 
 import com.olabode.wilson.cyclee.core.data.Result
 import com.olabode.wilson.cyclee.feature_authentication.data.AuthConstants
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationToken
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationCredentials
 import com.olabode.wilson.cyclee.feature_authentication.domain.repository.AuthenticationRepository
 import javax.inject.Inject
 
@@ -16,14 +16,14 @@ class TokenVerificationUseCaseImpl @Inject constructor(
     private val authenticationRepository: AuthenticationRepository
 ) : TokenVerificationUseCase {
 
-    override suspend fun invoke(token: VerificationToken): Result<String> {
-        val validationResult = validateToken(token)
+    override suspend fun invoke(credentials: VerificationCredentials): Result<String> {
+        val validationResult = validateToken(credentials)
 
         if (validationResult != null) {
             return validationResult
         }
 
-        return when (val result = authenticationRepository.verifyToken(token)) {
+        return when (val result = authenticationRepository.verifyToken(credentials)) {
             is Result.Success -> {
                 Result.Success(result.data)
             }
@@ -33,10 +33,11 @@ class TokenVerificationUseCaseImpl @Inject constructor(
         }
     }
 
-    private fun validateToken(token: VerificationToken): Result.Error? {
+    private fun validateToken(credentials: VerificationCredentials): Result.Error? {
         return when {
-            token.token.isEmpty() -> Result.Error(message = AuthConstants.ERR_EMPTY_TOKEN)
-            token.token.length != AuthConstants.TOKEN_LENGTH ->
+            credentials.email.isEmpty() -> Result.Error(message = AuthConstants.ERR_EMAIL_NOT_PROVIDED)
+            credentials.token.isEmpty() -> Result.Error(message = AuthConstants.ERR_EMPTY_TOKEN)
+            credentials.token.length != AuthConstants.TOKEN_LENGTH ->
                 Result.Error(message = AuthConstants.ERR_INVALID_TOKEN)
             else -> null
         }

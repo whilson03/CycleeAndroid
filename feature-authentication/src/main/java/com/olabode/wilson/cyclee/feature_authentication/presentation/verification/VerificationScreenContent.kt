@@ -72,7 +72,7 @@ fun VerificationScreenContent(
                 ),
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                TitleAndMailSection(email = uiState.email.getString())
+                TitleAndMailSection(email = uiState.email?.getString() ?: "")
 
                 PinView(onValueChanged = onTokenChanged)
 

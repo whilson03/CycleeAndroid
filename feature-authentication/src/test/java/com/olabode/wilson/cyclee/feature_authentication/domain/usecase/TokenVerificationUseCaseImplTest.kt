@@ -3,7 +3,7 @@ package com.olabode.wilson.cyclee.feature_authentication.domain.usecase
 import com.google.common.truth.Truth.assertThat
 import com.olabode.wilson.cyclee.core.data.Result
 import com.olabode.wilson.cyclee.feature_authentication.data.AuthConstants
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationToken
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationCredentials
 import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.verification.TokenVerificationUseCaseImpl
 import com.olabode.wilson.cyclee.feature_authentication.fakes.FakeAuthRepository
 import kotlinx.coroutines.test.runBlockingTest
@@ -19,6 +19,7 @@ import org.junit.Test
 class TokenVerificationUseCaseImplTest {
 
     private lateinit var authRepository: FakeAuthRepository
+    private val testEmail = "test@mail.com"
 
     @Before
     fun setup() {
@@ -27,58 +28,77 @@ class TokenVerificationUseCaseImplTest {
 
     @Test
     fun testSuccessfulTokenVerification() = runBlockingTest {
-        val token = VerificationToken("123456")
+        val credential = VerificationCredentials(token = "12345", email = testEmail)
 
         val mockResult = Result.Success("")
 
         authRepository.apply {
             mockTokenVerification(
-                token = token,
+                credentials = credential,
                 result = mockResult
             )
         }
 
         val usecase = TokenVerificationUseCaseImpl(authRepository.mock)
-        val result = usecase(token)
+        val result = usecase(credentials = credential)
 
         assertThat(result).isEqualTo(Result.Success(""))
     }
 
     @Test
     fun testEmptyTokenReturnsError() = runBlockingTest {
-        val token = VerificationToken("")
+        val credential = VerificationCredentials(token = "", email = testEmail)
 
         val mockResult = Result.Error()
 
         authRepository.apply {
             mockTokenVerification(
-                token = token,
+                credentials = credential,
                 result = mockResult
             )
         }
 
         val usecase = TokenVerificationUseCaseImpl(authRepository.mock)
-        val result = usecase(token)
+        val result = usecase(credentials = credential)
 
         assertThat(result).isEqualTo(Result.Error(message = AuthConstants.ERR_EMPTY_TOKEN))
     }
 
     @Test
     fun testInvalidTokenLengthReturnsError() = runBlockingTest {
-        val invalidToken = VerificationToken("1")
+        val credential = VerificationCredentials(token = "1", email = testEmail)
 
         val mockResult = Result.Error()
 
         authRepository.apply {
             mockTokenVerification(
-                token = invalidToken,
+                credentials = credential,
                 result = mockResult
             )
         }
 
         val usecase = TokenVerificationUseCaseImpl(authRepository.mock)
-        val result = usecase(invalidToken)
+        val result = usecase(credentials = credential)
 
         assertThat(result).isEqualTo(Result.Error(message = AuthConstants.ERR_INVALID_TOKEN))
+    }
+
+    @Test
+    fun testEmptyEmailReturnsError() = runBlockingTest {
+        val credential = VerificationCredentials(token = "12345", email = "")
+
+        val mockResult = Result.Error()
+
+        authRepository.apply {
+            mockTokenVerification(
+                credentials = credential,
+                result = mockResult
+            )
+        }
+
+        val usecase = TokenVerificationUseCaseImpl(authRepository.mock)
+        val result = usecase(credentials = credential)
+
+        assertThat(result).isEqualTo(Result.Error(message = AuthConstants.ERR_EMAIL_NOT_PROVIDED))
     }
 }

@@ -1,7 +1,7 @@
 package com.olabode.wilson.cyclee.feature_authentication.fakes
 
 import com.olabode.wilson.cyclee.core.data.Result
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationToken
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationCredentials
 import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.verification.TokenVerificationUseCase
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -17,11 +17,11 @@ class FakeTokenVerificationUseCase {
     val mock: TokenVerificationUseCase = mockk()
 
     fun mockTokenVerificationResult(
-        token: VerificationToken,
+        credentials: VerificationCredentials,
         result: Result<String>
     ) {
         coEvery {
-            mock(token)
+            mock(credentials)
         } returns result
     }
 }

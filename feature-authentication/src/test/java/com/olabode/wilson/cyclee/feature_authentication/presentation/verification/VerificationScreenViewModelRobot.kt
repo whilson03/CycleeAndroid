@@ -3,7 +3,7 @@ package com.olabode.wilson.cyclee.feature_authentication.presentation.verificati
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import com.olabode.wilson.cyclee.core.data.Result
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationToken
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationCredentials
 import com.olabode.wilson.cyclee.feature_authentication.fakes.FakeTokenVerificationUseCase
 
 /**
@@ -23,10 +23,13 @@ class VerificationScreenViewModelRobot {
     }
 
     fun mockTokenVerificationResult(
-        token: VerificationToken,
+        credentials: VerificationCredentials,
         result: Result<String>
     ) = apply {
-        fakeTokenVerificationUseCase.mockTokenVerificationResult(token, result)
+        fakeTokenVerificationUseCase.mockTokenVerificationResult(
+            credentials = credentials,
+            result = result
+        )
     }
 
     fun enterToken(token: String) {

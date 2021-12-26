@@ -1,7 +1,7 @@
 package com.olabode.wilson.cyclee.feature_authentication.domain.usecase.verification
 
 import com.olabode.wilson.cyclee.core.data.Result
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationToken
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationCredentials
 
 /**
  * CREATED BY: ADEYORIJU OLABODE WILSON
@@ -12,6 +12,6 @@ import com.olabode.wilson.cyclee.feature_authentication.domain.model.verificatio
 interface TokenVerificationUseCase {
 
     suspend operator fun invoke(
-        token: VerificationToken,
+        credentials: VerificationCredentials
     ): Result<String>
 }

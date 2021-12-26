@@ -25,7 +25,8 @@ interface AuthApiService {
     @FormUrlEncoded
     @POST("$authPath/verify")
     suspend fun verifyToken(
-        @Field("token") token: String
+        @Field("token") token: String,
+        @Field("email") email: String
     ): BasicApiResponse
 
     companion object {

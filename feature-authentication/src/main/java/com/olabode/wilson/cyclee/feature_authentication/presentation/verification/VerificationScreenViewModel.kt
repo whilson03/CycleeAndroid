@@ -33,9 +33,9 @@ class VerificationScreenViewModel @Inject constructor(
     val uiState: StateFlow<VerificationScreenUiState> = _uiState
 
     fun onTokenChanged(token: String) {
-        val newToken = uiState.value.token.copy(token = token)
+        val newToken = uiState.value.credentials.copy(token = token)
         _uiState.value = _uiState.value.copy(
-            token = newToken,
+            credentials = newToken,
             isSendButtonEnabled = newToken.token.length == AuthConstants.TOKEN_LENGTH
         )
     }
@@ -45,10 +45,9 @@ class VerificationScreenViewModel @Inject constructor(
     }
 
     fun submitToken() {
-        val enteredToken = _uiState.value.token
-        _uiState.value = uiState.value.copy(
-            isLoading = true
-        )
+        val enteredToken = _uiState.value.credentials
+        _uiState.value = uiState.value.copy(isLoading = true)
+
         viewModelScope.launch {
             val result = tokenVerificationUseCase(enteredToken)
             handleTokenSubmissionResult(result)
@@ -69,11 +68,9 @@ class VerificationScreenViewModel @Inject constructor(
             is Result.Error -> {
                 _uiState.value.copy(
                     errorMessage = UIText.StringText(
-                        result.message
-                            ?: NetworkConstants.GENERIC_FAILURE_MESSAGE,
+                        result.message ?: NetworkConstants.GENERIC_FAILURE_MESSAGE,
                     ),
                     isLoading = false
-
                 )
             }
         }

@@ -3,7 +3,7 @@ package com.olabode.wilson.cyclee.feature_authentication.presentation.verificati
 import com.olabode.wilson.cyclee.common_ui.ui.UIText
 import com.olabode.wilson.cyclee.core.data.Result
 import com.olabode.wilson.cyclee.feature_authentication.CoroutinesTestRule
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationToken
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationCredentials
 import com.olabode.wilson.cyclee.networking.constants.NetworkConstants
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
@@ -29,23 +29,23 @@ class VerificationScreenViewModelTest {
     }
 
     @Test
-    fun testUpdateToken() = runBlockingTest {
-        val token = VerificationToken("12345")
+    fun testUpdateTokenCredential() = runBlockingTest {
+        val credential = VerificationCredentials(token = "12345", email = "")
 
         val initialState = VerificationScreenUiState()
 
-        val tokenEnteredState = VerificationScreenUiState(
-            token = token,
+        val credentialEnteredState = VerificationScreenUiState(
+            credentials = credential,
             isSendButtonEnabled = true
         )
 
-        val viewStates = listOf(initialState, tokenEnteredState)
+        val viewStates = listOf(initialState, credentialEnteredState)
 
         testRobot
             .buildViewModel()
             .expectViewStates(
                 action = {
-                    enterToken(token.token)
+                    enterToken(credential.token)
                 },
                 viewStates = viewStates,
             )
@@ -53,47 +53,47 @@ class VerificationScreenViewModelTest {
 
     @Test
     fun testIncompleteTokenInputDisablesSubmitButton() = runBlockingTest {
-        val token = VerificationToken("123")
+        val credential = VerificationCredentials(token = "123", email = "")
 
         val initialState = VerificationScreenUiState()
 
-        val tokenEnteredState = VerificationScreenUiState(
-            token = token,
+        val credentialEnteredState = VerificationScreenUiState(
+            credentials = credential,
             isSendButtonEnabled = false
         )
 
-        val viewStates = listOf(initialState, tokenEnteredState)
+        val viewStates = listOf(initialState, credentialEnteredState)
 
         testRobot
             .buildViewModel()
             .expectViewStates(
                 action = {
-                    enterToken(token.token)
+                    enterToken(credential.token)
                 },
                 viewStates = viewStates,
             )
     }
 
     @Test
-    fun testSuccessfulTokenSubmission() = runBlockingTest {
-        val token = VerificationToken("12345")
+    fun testSuccessfulCredentialSubmission() = runBlockingTest {
+        val credential = VerificationCredentials(token = "12345", email = "")
 
         val initialState = VerificationScreenUiState()
 
-        val tokenEnteredState = VerificationScreenUiState(
-            token = token,
+        val credentialEnteredState = VerificationScreenUiState(
+            credentials = credential,
             isSendButtonEnabled = true
         )
 
         val submittingState = VerificationScreenUiState(
-            token = token,
+            credentials = credential,
             isLoading = true,
             isSendButtonEnabled = true
 
         )
 
         val submittedState = VerificationScreenUiState(
-            token = token,
+            credentials = credential,
             isLoading = false,
             isRetryAvailable = false,
             isSendButtonEnabled = false
@@ -101,7 +101,7 @@ class VerificationScreenViewModelTest {
 
         val viewStates = listOf(
             initialState,
-            tokenEnteredState,
+            credentialEnteredState,
             submittingState,
             submittedState
         )
@@ -109,12 +109,12 @@ class VerificationScreenViewModelTest {
         testRobot
             .buildViewModel()
             .mockTokenVerificationResult(
-                token = token,
+                credentials = credential,
                 result = Result.Success("")
             )
             .expectViewStates(
                 action = {
-                    enterToken(token.token)
+                    enterToken(credential.token)
                     submitToken()
                 },
                 viewStates = viewStates,
@@ -122,25 +122,25 @@ class VerificationScreenViewModelTest {
     }
 
     @Test
-    fun testTokenSubmissionError() = runBlockingTest {
-        val token = VerificationToken("12345")
+    fun testCredentialSubmissionError() = runBlockingTest {
+        val credential = VerificationCredentials(token = "12345", email = "")
 
         val initialState = VerificationScreenUiState()
 
-        val tokenEnteredState = VerificationScreenUiState(
-            token = token,
+        val credentialEnteredState = VerificationScreenUiState(
+            credentials = credential,
             isSendButtonEnabled = true
         )
 
         val submittingState = VerificationScreenUiState(
-            token = token,
+            credentials = credential,
             isLoading = true,
             isSendButtonEnabled = true
 
         )
 
         val submittedStateError = VerificationScreenUiState(
-            token = token,
+            credentials = credential,
             isLoading = false,
             isSendButtonEnabled = true,
             errorMessage = UIText.StringText(
@@ -150,7 +150,7 @@ class VerificationScreenViewModelTest {
 
         val viewStates = listOf(
             initialState,
-            tokenEnteredState,
+            credentialEnteredState,
             submittingState,
             submittedStateError
         )
@@ -158,12 +158,12 @@ class VerificationScreenViewModelTest {
         testRobot
             .buildViewModel()
             .mockTokenVerificationResult(
-                token = token,
+                credentials = credential,
                 result = Result.Error()
             )
             .expectViewStates(
                 action = {
-                    enterToken(token.token)
+                    enterToken(credential.token)
                     submitToken()
                 },
                 viewStates = viewStates,

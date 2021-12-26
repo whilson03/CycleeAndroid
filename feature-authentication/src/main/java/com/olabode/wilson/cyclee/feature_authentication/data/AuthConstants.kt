@@ -10,5 +10,7 @@ internal object AuthConstants {
     const val ERR_EMPTY_TOKEN = "Token can't be blank."
     const val ERR_INVALID_TOKEN = "Token is invalid."
 
+    const val ERR_EMAIL_NOT_PROVIDED = "Email is required."
+
     const val TOKEN_LENGTH = 5
 }

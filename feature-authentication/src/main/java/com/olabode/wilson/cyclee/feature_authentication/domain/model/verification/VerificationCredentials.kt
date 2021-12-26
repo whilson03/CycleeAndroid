@@ -6,6 +6,7 @@ package com.olabode.wilson.cyclee.feature_authentication.domain.model.verificati
  * EMAIL: whilson03@gmail.com
  */
 
-data class VerificationToken(
-    val token: String
+data class VerificationCredentials(
+    val token: String = "",
+    val email: String = ""
 )
