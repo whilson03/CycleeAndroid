@@ -22,7 +22,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 fun RegisterScreen(
     modifier: Modifier = Modifier,
     onNavigateToLogin: () -> Unit,
-    onNavigateToVerification: () -> Unit
+    onNavigateToVerification: (email: String) -> Unit
 ) {
     val scrollState = rememberScrollState()
     val viewModel: RegisterViewModel = hiltViewModel()
@@ -32,7 +32,7 @@ fun RegisterScreen(
 
     LaunchedEffect(viewState.value) {
         if (viewState.value.registrationCompleted) {
-            currentOnNavigateToVerification()
+            currentOnNavigateToVerification(viewState.value.credentials.email)
         }
     }
 

@@ -1,11 +1,13 @@
 package com.olabode.wilson.cyclee.feature_authentication.presentation.verification
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.olabode.wilson.cyclee.common_ui.ui.UIText
 import com.olabode.wilson.cyclee.core.data.Result
 import com.olabode.wilson.cyclee.core.utils.CycleeCountDownTimer
 import com.olabode.wilson.cyclee.feature_authentication.data.AuthConstants
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationCredentials
 import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.verification.TokenVerificationUseCase
 import com.olabode.wilson.cyclee.networking.constants.NetworkConstants
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,7 +25,8 @@ import javax.inject.Inject
 @Suppress("UnusedPrivateMember")
 @HiltViewModel
 class VerificationScreenViewModel @Inject constructor(
-    private val tokenVerificationUseCase: TokenVerificationUseCase
+    private val tokenVerificationUseCase: TokenVerificationUseCase,
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     val timerState = CycleeCountDownTimer(millis = (2 * 60 * 1000))
@@ -32,8 +35,18 @@ class VerificationScreenViewModel @Inject constructor(
         MutableStateFlow(VerificationScreenUiState())
     val uiState: StateFlow<VerificationScreenUiState> = _uiState
 
+    init {
+        val email = savedStateHandle.get<String>("email") ?: ""
+        _uiState.value = _uiState.value.copy(
+            credentials = VerificationCredentials(
+                email = email
+            ),
+            email = UIText.StringText(email)
+        )
+    }
+
     fun onTokenChanged(token: String) {
-        val newToken = uiState.value.credentials.copy(token = token)
+        val newToken = _uiState.value.credentials.copy(token = token)
         _uiState.value = _uiState.value.copy(
             credentials = newToken,
             isSendButtonEnabled = newToken.token.length == AuthConstants.TOKEN_LENGTH
@@ -45,11 +58,12 @@ class VerificationScreenViewModel @Inject constructor(
     }
 
     fun submitToken() {
-        val enteredToken = _uiState.value.credentials
-        _uiState.value = uiState.value.copy(isLoading = true)
+        val token = _uiState.value.credentials.token
+        _uiState.value = uiState.value.copy(isLoading = true, isSendButtonEnabled = false)
 
         viewModelScope.launch {
-            val result = tokenVerificationUseCase(enteredToken)
+            val credentials = VerificationCredentials(token = token)
+            val result = tokenVerificationUseCase(credentials)
             handleTokenSubmissionResult(result)
         }
     }
@@ -70,7 +84,8 @@ class VerificationScreenViewModel @Inject constructor(
                     errorMessage = UIText.StringText(
                         result.message ?: NetworkConstants.GENERIC_FAILURE_MESSAGE,
                     ),
-                    isLoading = false
+                    isLoading = false,
+                    isSendButtonEnabled = true
                 )
             }
         }
