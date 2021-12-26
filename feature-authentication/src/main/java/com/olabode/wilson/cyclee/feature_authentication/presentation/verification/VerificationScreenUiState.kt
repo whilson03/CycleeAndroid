@@ -13,6 +13,7 @@ data class VerificationScreenUiState(
     val token: VerificationToken = VerificationToken(""),
     val email: UIText = UIText.StringText(""),
     val errorMessage: UIText? = null,
+    val isLoading: Boolean = false,
     val isRetryAvailable: Boolean = false,
     val isSendButtonEnabled: Boolean = false
 )

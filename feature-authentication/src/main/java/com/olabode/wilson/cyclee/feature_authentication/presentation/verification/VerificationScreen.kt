@@ -20,6 +20,7 @@ fun VerificationScreen() {
 
     VerificationScreenContent(
         uiState = uiState.value,
+        isLoading = uiState.value.isLoading,
         isResendButtonEnabled = uiState.value.isRetryAvailable,
         isSubmitButtonEnabled = uiState.value.isSendButtonEnabled,
         onTokenChanged = viewModel::onTokenChanged,

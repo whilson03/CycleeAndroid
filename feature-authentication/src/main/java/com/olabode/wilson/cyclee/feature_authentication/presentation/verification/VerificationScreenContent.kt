@@ -36,11 +36,13 @@ import com.olabode.wilson.cyclee.feature_authentication.presentation.components.
  * EMAIL: whilson03@gmail.com
  */
 
+@Suppress("UnusedPrivateMember")
 @ExperimentalComposeUiApi
 @Composable
 fun VerificationScreenContent(
     modifier: Modifier = Modifier,
     uiState: VerificationScreenUiState,
+    isLoading: Boolean = false,
     isResendButtonEnabled: Boolean = false,
     isSubmitButtonEnabled: Boolean = false,
     onTokenChanged: (token: String) -> Unit,

@@ -18,7 +18,7 @@ import com.olabode.wilson.cyclee.feature_authentication.presentation.verificatio
  */
 @ExperimentalComposeUiApi
 fun NavGraphBuilder.addAuthGraph(navController: NavController) {
-    navigation(route = Screen.Authentication.route, startDestination = AuthScreen.Login.route) {
+    navigation(route = Screen.Authentication.route, startDestination = AuthScreen.Verification.route) {
         composable(route = AuthScreen.Login.route) {
             LoginScreen(
                 onNavigateToVerification = {

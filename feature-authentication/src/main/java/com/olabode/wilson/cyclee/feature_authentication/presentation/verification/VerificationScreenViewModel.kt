@@ -1,12 +1,17 @@
 package com.olabode.wilson.cyclee.feature_authentication.presentation.verification
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.olabode.wilson.cyclee.common_ui.ui.UIText
+import com.olabode.wilson.cyclee.core.data.Result
 import com.olabode.wilson.cyclee.core.utils.CycleeCountDownTimer
 import com.olabode.wilson.cyclee.feature_authentication.data.AuthConstants
 import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.verification.TokenVerificationUseCase
+import com.olabode.wilson.cyclee.networking.constants.NetworkConstants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -40,6 +45,37 @@ class VerificationScreenViewModel @Inject constructor(
     }
 
     fun submitToken() {
-        // todo
+        val enteredToken = _uiState.value.token
+        _uiState.value = uiState.value.copy(
+            isLoading = true
+        )
+        viewModelScope.launch {
+            val result = tokenVerificationUseCase(enteredToken)
+            handleTokenSubmissionResult(result)
+        }
+    }
+
+    private fun handleTokenSubmissionResult(
+        result: Result<String>
+    ) {
+        _uiState.value = when (result) {
+            is Result.Success -> {
+                _uiState.value.copy(
+                    isLoading = false,
+                    isSendButtonEnabled = false,
+                    isRetryAvailable = false
+                )
+            }
+            is Result.Error -> {
+                _uiState.value.copy(
+                    errorMessage = UIText.StringText(
+                        result.message
+                            ?: NetworkConstants.GENERIC_FAILURE_MESSAGE,
+                    ),
+                    isLoading = false
+
+                )
+            }
+        }
     }
 }

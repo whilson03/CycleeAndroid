@@ -12,4 +12,5 @@ object NetworkConstants {
 
     // messages
     const val GENERIC_SUCCESS_MESSAGE = "Operation Successful."
+    const val GENERIC_FAILURE_MESSAGE = "Operation Failed."
 }

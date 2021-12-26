@@ -33,6 +33,10 @@ class VerificationScreenViewModelRobot {
         viewModel.onTokenChanged(token)
     }
 
+    fun submitToken() {
+        viewModel.submitToken()
+    }
+
     /**
      * Launch a coroutine that will observe our [viewModel]'s view state and ensure that we consume
      * all of the supplied [viewStates] in the same order that they are supplied.
