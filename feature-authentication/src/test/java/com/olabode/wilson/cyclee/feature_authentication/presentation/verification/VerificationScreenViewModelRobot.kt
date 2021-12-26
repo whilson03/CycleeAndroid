@@ -1,10 +1,12 @@
 package com.olabode.wilson.cyclee.feature_authentication.presentation.verification
 
+import androidx.lifecycle.SavedStateHandle
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import com.olabode.wilson.cyclee.core.data.Result
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationCredentials
 import com.olabode.wilson.cyclee.feature_authentication.fakes.FakeTokenVerificationUseCase
+import io.mockk.mockk
 
 /**
  * CREATED BY: ADEYORIJU OLABODE WILSON
@@ -16,10 +18,12 @@ class VerificationScreenViewModelRobot {
 
     private val fakeTokenVerificationUseCase = FakeTokenVerificationUseCase()
 
+    private val savedStateHandle = mockk<SavedStateHandle>(relaxed = true)
+
     private lateinit var viewModel: VerificationScreenViewModel
 
     fun buildViewModel() = apply {
-        viewModel = VerificationScreenViewModel(fakeTokenVerificationUseCase.mock)
+        viewModel = VerificationScreenViewModel(fakeTokenVerificationUseCase.mock, savedStateHandle)
     }
 
     fun mockTokenVerificationResult(

@@ -77,6 +77,12 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
+    fun onNavigate() {
+        _viewState.value = _viewState.value.copy(
+            credentials = RegisterCredentials.EMPTY
+        )
+    }
+
     private fun handleRegisterResult(
         result: RegisterResult,
         currentCredentials: RegisterCredentials,
@@ -103,7 +109,6 @@ class RegisterViewModel @Inject constructor(
 
             is RegisterResult.Success -> {
                 _viewState.value.copy(
-                    credentials = RegisterCredentials.EMPTY,
                     isLoading = false,
                     registrationCompleted = true
                 )

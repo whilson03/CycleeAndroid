@@ -32,7 +32,9 @@ fun RegisterScreen(
 
     LaunchedEffect(viewState.value) {
         if (viewState.value.registrationCompleted) {
-            currentOnNavigateToVerification(viewState.value.credentials.email)
+            val email = viewState.value.credentials.email
+            viewModel.onNavigate() // reset the inputted credentials
+            currentOnNavigateToVerification(email)
         }
     }
 

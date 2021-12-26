@@ -300,6 +300,12 @@ class RegisterViewModelTest {
         )
 
         val successfulRegistrationState = RegisterUiState(
+            credentials = credentials,
+            registrationCompleted = true,
+            isLoading = false
+        )
+
+        val navigationAfterSuccess = RegisterUiState(
             credentials = RegisterCredentials.EMPTY,
             registrationCompleted = true,
             isLoading = false
@@ -313,8 +319,8 @@ class RegisterViewModelTest {
             passEntered,
             confirmPasswordEntered,
             submittingState,
-            successfulRegistrationState
-
+            successfulRegistrationState,
+            navigationAfterSuccess
         )
 
         testRobot
@@ -331,6 +337,7 @@ class RegisterViewModelTest {
                     enterPassword(credentials.password)
                     enterConfirmationPassword(credentials.confirmPassword)
                     clickRegisterButton()
+                    onNavigate()
                 },
                 viewStates = viewStates,
             )
