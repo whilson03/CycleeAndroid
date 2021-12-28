@@ -9,7 +9,11 @@ import androidx.navigation.compose.NavHost
 
 @Composable
 internal fun AppNavigation(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = Screen.Splash.route) {
+    NavHost(
+        navController = navController,
+        startDestination = Screen.Splash.route,
+        route = Screen.Root.route
+    ) {
         addSplashGraph(navController)
         addOnBoardingGraph(navController)
         addAuthGraph(navController)

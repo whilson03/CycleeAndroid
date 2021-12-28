@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.olabode.wilson.cyclee.common_ui.ui.UIText
 import com.olabode.wilson.cyclee.feature_authentication.R
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterCredentials
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterResult
-import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.RegisterUseCase
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterCredentials
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterResult
+import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.register.RegisterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -77,6 +77,12 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
+    fun onNavigate() {
+        _viewState.value = _viewState.value.copy(
+            credentials = RegisterCredentials.EMPTY
+        )
+    }
+
     private fun handleRegisterResult(
         result: RegisterResult,
         currentCredentials: RegisterCredentials,
@@ -103,7 +109,6 @@ class RegisterViewModel @Inject constructor(
 
             is RegisterResult.Success -> {
                 _viewState.value.copy(
-                    credentials = RegisterCredentials.EMPTY,
                     isLoading = false,
                     registrationCompleted = true
                 )

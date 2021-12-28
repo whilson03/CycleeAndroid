@@ -33,4 +33,6 @@
     <string name="err_invalid_credentials">Invalid credentials</string>
     <string name="err_unknown">Oops... An unknown error occured.</string>
     <string name="err_mismatched_passwords">Passwords do not match...</string>
+    <string name="resend_code_with_time">Resend code in %1$s?</string>
+    <string name="resend_code">Resend code</string>
 </resources>

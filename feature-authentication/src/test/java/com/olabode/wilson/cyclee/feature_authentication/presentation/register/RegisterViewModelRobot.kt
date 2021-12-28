@@ -2,8 +2,8 @@ package com.olabode.wilson.cyclee.feature_authentication.presentation.register
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterCredentials
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterResult
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterCredentials
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterResult
 import com.olabode.wilson.cyclee.feature_authentication.fakes.FakeRegisterUseCase
 
 /**
@@ -50,6 +50,10 @@ class RegisterViewModelRobot {
 
     fun clickRegisterButton() = apply {
         viewModel.registerButtonClicked()
+    }
+
+    fun onNavigate() {
+        viewModel.onNavigate()
     }
 
     /**

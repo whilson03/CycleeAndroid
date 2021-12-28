@@ -16,7 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.olabode.wilson.cyclee.common_ui.ui.getString
 import com.olabode.wilson.cyclee.feature_authentication.R
-import com.olabode.wilson.cyclee.feature_authentication.domain.model.RegisterCredentials
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterCredentials
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.AuthButton
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.PasswordTextField
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.TextInputField
