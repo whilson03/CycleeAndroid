@@ -56,6 +56,7 @@ fun VerificationScreen(
     }
 
     VerificationScreenContent(
+        modifier = modifier,
         uiState = uiState.value,
         resendButtonText = resendButtonText,
         isLoading = uiState.value.isLoading,
