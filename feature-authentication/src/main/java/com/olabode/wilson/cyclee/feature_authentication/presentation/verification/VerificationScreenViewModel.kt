@@ -5,10 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.olabode.wilson.cyclee.common_ui.ui.UIText
 import com.olabode.wilson.cyclee.core.data.Result
-import com.olabode.wilson.cyclee.core.utils.CycleeCountDownTimer
 import com.olabode.wilson.cyclee.feature_authentication.data.AuthConstants
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationCredentials
 import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.verification.TokenVerificationUseCase
+import com.olabode.wilson.cyclee.feature_authentication.utils.timer.VerificationCountDownTimer
 import com.olabode.wilson.cyclee.networking.constants.NetworkConstants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,16 +26,30 @@ import javax.inject.Inject
 @HiltViewModel
 class VerificationScreenViewModel @Inject constructor(
     private val tokenVerificationUseCase: TokenVerificationUseCase,
-    private val savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle,
+    private val timer: VerificationCountDownTimer
 ) : ViewModel() {
 
-    val timerState = CycleeCountDownTimer(millis = (2 * 60 * 1000))
+    val timerState = timer.timerState
 
     private val _uiState: MutableStateFlow<VerificationScreenUiState> =
         MutableStateFlow(VerificationScreenUiState())
     val uiState: StateFlow<VerificationScreenUiState> = _uiState
 
     init {
+        startTimer()
+        setupEmail()
+    }
+
+    fun startTimer() {
+        timer.startTimer()
+    }
+
+    fun stopTimer() {
+        timer.stopTimer()
+    }
+
+    private fun setupEmail() {
         val email = savedStateHandle.get<String>("email") ?: ""
         _uiState.value = _uiState.value.copy(
             credentials = VerificationCredentials(
@@ -53,16 +67,31 @@ class VerificationScreenViewModel @Inject constructor(
         )
     }
 
+    fun enableResendButton() {
+        _uiState.value = _uiState.value.copy(
+            isResendButtonEnabled = true
+        )
+    }
+
+    fun disableResendButton() {
+        _uiState.value = _uiState.value.copy(
+            isResendButtonEnabled = false
+        )
+    }
+
     fun onResendToken() {
-        // todo
+        startTimer()
     }
 
     fun submitToken() {
-        val token = _uiState.value.credentials.token
+        val currentCredentials = _uiState.value.credentials
         _uiState.value = uiState.value.copy(isLoading = true, isSendButtonEnabled = false)
 
         viewModelScope.launch {
-            val credentials = VerificationCredentials(token = token)
+            val credentials = VerificationCredentials(
+                token = currentCredentials.token,
+                email = currentCredentials.email
+            )
             val result = tokenVerificationUseCase(credentials)
             handleTokenSubmissionResult(result)
         }
@@ -73,10 +102,11 @@ class VerificationScreenViewModel @Inject constructor(
     ) {
         _uiState.value = when (result) {
             is Result.Success -> {
+                stopTimer()
                 _uiState.value.copy(
                     isLoading = false,
                     isSendButtonEnabled = false,
-                    isRetryAvailable = false
+                    isResendButtonEnabled = false
                 )
             }
             is Result.Error -> {

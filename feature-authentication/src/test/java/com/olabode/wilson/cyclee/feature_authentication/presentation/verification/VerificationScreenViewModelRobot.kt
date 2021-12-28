@@ -5,8 +5,8 @@ import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import com.olabode.wilson.cyclee.core.data.Result
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationCredentials
+import com.olabode.wilson.cyclee.feature_authentication.fakes.FakeCountDownTimer
 import com.olabode.wilson.cyclee.feature_authentication.fakes.FakeTokenVerificationUseCase
-import io.mockk.mockk
 
 /**
  * CREATED BY: ADEYORIJU OLABODE WILSON
@@ -18,12 +18,20 @@ class VerificationScreenViewModelRobot {
 
     private val fakeTokenVerificationUseCase = FakeTokenVerificationUseCase()
 
-    private val savedStateHandle = mockk<SavedStateHandle>(relaxed = true)
+    private val savedStateHandle = SavedStateHandle().apply {
+        set("email", "test@mail.com")
+    }
+
+    private val fakeCountDownTimer = FakeCountDownTimer()
 
     private lateinit var viewModel: VerificationScreenViewModel
 
     fun buildViewModel() = apply {
-        viewModel = VerificationScreenViewModel(fakeTokenVerificationUseCase.mock, savedStateHandle)
+        viewModel = VerificationScreenViewModel(
+            tokenVerificationUseCase = fakeTokenVerificationUseCase.mock,
+            savedStateHandle = savedStateHandle,
+            timer = fakeCountDownTimer
+        )
     }
 
     fun mockTokenVerificationResult(

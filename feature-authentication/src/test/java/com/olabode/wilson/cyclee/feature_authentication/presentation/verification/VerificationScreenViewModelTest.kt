@@ -20,6 +20,9 @@ class VerificationScreenViewModelTest {
 
     private lateinit var testRobot: VerificationScreenViewModelRobot
 
+    private val testEmail = "test@mail.com"
+    private val uiEmail = UIText.StringText(testEmail)
+
     @get:Rule
     val coroutinesTestRule = CoroutinesTestRule()
 
@@ -30,12 +33,17 @@ class VerificationScreenViewModelTest {
 
     @Test
     fun testUpdateTokenCredential() = runBlockingTest {
-        val credential = VerificationCredentials(token = "12345", email = "")
+        val credential = VerificationCredentials(token = "12345", email = testEmail)
 
-        val initialState = VerificationScreenUiState()
+        // email is passed from register viewModel to the savedStateHandle of VerificationViewModel
+        val initialState = VerificationScreenUiState(
+            credentials = VerificationCredentials(email = testEmail),
+            email = uiEmail
+        )
 
         val credentialEnteredState = VerificationScreenUiState(
             credentials = credential,
+            email = uiEmail,
             isSendButtonEnabled = true
         )
 
@@ -53,13 +61,17 @@ class VerificationScreenViewModelTest {
 
     @Test
     fun testIncompleteTokenInputDisablesSubmitButton() = runBlockingTest {
-        val credential = VerificationCredentials(token = "123", email = "")
+        val credential = VerificationCredentials(token = "123", email = testEmail)
 
-        val initialState = VerificationScreenUiState()
+        val initialState = VerificationScreenUiState(
+            credentials = VerificationCredentials(email = testEmail),
+            email = uiEmail
+        )
 
         val credentialEnteredState = VerificationScreenUiState(
             credentials = credential,
-            isSendButtonEnabled = false
+            isSendButtonEnabled = false,
+            email = uiEmail
         )
 
         val viewStates = listOf(initialState, credentialEnteredState)
@@ -76,27 +88,32 @@ class VerificationScreenViewModelTest {
 
     @Test
     fun testSuccessfulCredentialSubmission() = runBlockingTest {
-        val credential = VerificationCredentials(token = "12345", email = "")
+        val credential = VerificationCredentials(token = "12345", email = testEmail)
 
-        val initialState = VerificationScreenUiState()
+        val initialState = VerificationScreenUiState(
+            credentials = VerificationCredentials(email = testEmail),
+            email = uiEmail
+        )
 
         val credentialEnteredState = VerificationScreenUiState(
             credentials = credential,
-            isSendButtonEnabled = true
+            isSendButtonEnabled = true,
+            email = uiEmail
         )
 
         val submittingState = VerificationScreenUiState(
             credentials = credential,
             isLoading = true,
-            isSendButtonEnabled = true
-
+            isSendButtonEnabled = false,
+            email = uiEmail
         )
 
         val submittedState = VerificationScreenUiState(
             credentials = credential,
             isLoading = false,
-            isRetryAvailable = false,
-            isSendButtonEnabled = false
+            isResendButtonEnabled = false,
+            isSendButtonEnabled = false,
+            email = uiEmail
         )
 
         val viewStates = listOf(
@@ -123,24 +140,29 @@ class VerificationScreenViewModelTest {
 
     @Test
     fun testCredentialSubmissionError() = runBlockingTest {
-        val credential = VerificationCredentials(token = "12345", email = "")
+        val credential = VerificationCredentials(token = "12345", email = testEmail)
 
-        val initialState = VerificationScreenUiState()
+        val initialState = VerificationScreenUiState(
+            credentials = VerificationCredentials(email = testEmail),
+            email = uiEmail
+        )
 
         val credentialEnteredState = VerificationScreenUiState(
             credentials = credential,
-            isSendButtonEnabled = true
+            isSendButtonEnabled = true,
+            email = uiEmail
         )
 
         val submittingState = VerificationScreenUiState(
             credentials = credential,
             isLoading = true,
-            isSendButtonEnabled = true
-
+            isSendButtonEnabled = false,
+            email = uiEmail
         )
 
         val submittedStateError = VerificationScreenUiState(
             credentials = credential,
+            email = uiEmail,
             isLoading = false,
             isSendButtonEnabled = true,
             errorMessage = UIText.StringText(

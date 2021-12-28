@@ -13,4 +13,6 @@ internal object AuthConstants {
     const val ERR_EMAIL_NOT_PROVIDED = "Email is required."
 
     const val TOKEN_LENGTH = 5
+
+    const val TWO_MINUTES_IN_MILLIS = (2 * 60 * 1000).toLong()
 }

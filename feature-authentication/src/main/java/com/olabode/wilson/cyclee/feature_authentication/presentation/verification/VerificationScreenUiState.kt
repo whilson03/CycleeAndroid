@@ -14,6 +14,6 @@ data class VerificationScreenUiState(
     val email: UIText? = null,
     val errorMessage: UIText? = null,
     val isLoading: Boolean = false,
-    val isRetryAvailable: Boolean = false,
+    val isResendButtonEnabled: Boolean = false,
     val isSendButtonEnabled: Boolean = false
 )

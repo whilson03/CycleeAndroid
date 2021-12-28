@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.olabode.wilson.cyclee.common_ui.theme.Orange600
+import com.olabode.wilson.cyclee.common_ui.ui.UIText
 import com.olabode.wilson.cyclee.common_ui.ui.getString
 import com.olabode.wilson.cyclee.feature_authentication.R
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.AuthButton
@@ -42,6 +43,7 @@ import com.olabode.wilson.cyclee.feature_authentication.presentation.components.
 fun VerificationScreenContent(
     modifier: Modifier = Modifier,
     uiState: VerificationScreenUiState,
+    resendButtonText: UIText = UIText.ResourceText(R.string.resend_code),
     isLoading: Boolean = false,
     isResendButtonEnabled: Boolean = false,
     isSubmitButtonEnabled: Boolean = false,
@@ -77,6 +79,7 @@ fun VerificationScreenContent(
                 PinView(onValueChanged = onTokenChanged)
 
                 VerificationBottomSection(
+                    resendButtonText = resendButtonText.getString(),
                     isResendButtonEnabled = isResendButtonEnabled,
                     isSubmitButtonEnabled = isSubmitButtonEnabled,
                     onResendTokenClicked = onResendClicked,
@@ -90,6 +93,7 @@ fun VerificationScreenContent(
 @Composable
 private fun VerificationBottomSection(
     modifier: Modifier = Modifier,
+    resendButtonText: String = "",
     isResendButtonEnabled: Boolean = false,
     isSubmitButtonEnabled: Boolean = false,
     onResendTokenClicked: () -> Unit,
@@ -105,7 +109,7 @@ private fun VerificationBottomSection(
             enabled = isResendButtonEnabled
         ) {
             Text(
-                text = "Resend code in 02:00 ?",
+                text = resendButtonText,
                 color = Color.Gray,
                 textAlign = TextAlign.Center
             )
