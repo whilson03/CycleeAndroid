@@ -18,6 +18,7 @@ import com.olabode.wilson.cyclee.feature_authentication.presentation.verificatio
  * DATE: 05/09/2021
  * EMAIL: whilson03@gmail.com
  */
+@Suppress("LongMethod")
 @ExperimentalComposeUiApi
 fun NavGraphBuilder.addAuthGraph(navController: NavController) {
     navigation(
@@ -66,11 +67,13 @@ fun NavGraphBuilder.addAuthGraph(navController: NavController) {
                 }
             )
         ) {
-            VerificationScreen(onNavigateToLogin = {
-                navController.navigate(AuthScreen.Login.route) {
-                    popUpTo(AuthScreen.Login.route) { inclusive = true }
+            VerificationScreen(
+                onNavigateToLogin = {
+                    navController.navigate(AuthScreen.Login.route) {
+                        popUpTo(AuthScreen.Login.route) { inclusive = true }
+                    }
                 }
-            })
+            )
         }
 
         composable(AuthScreen.CreateNewPasswordScreen.route) {
