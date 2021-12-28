@@ -113,7 +113,8 @@ class VerificationScreenViewModelTest {
             isLoading = false,
             isResendButtonEnabled = false,
             isSendButtonEnabled = false,
-            email = uiEmail
+            email = uiEmail,
+            isVerificationSuccessful = true
         )
 
         val viewStates = listOf(

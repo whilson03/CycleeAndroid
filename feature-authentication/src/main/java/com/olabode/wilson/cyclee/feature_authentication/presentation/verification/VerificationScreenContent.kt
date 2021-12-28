@@ -155,5 +155,5 @@ private fun TitleAndMailSection(
 @Preview
 @Composable
 fun PreviewVerificationScreen() {
-    VerificationScreen()
+    VerificationScreen() {}
 }

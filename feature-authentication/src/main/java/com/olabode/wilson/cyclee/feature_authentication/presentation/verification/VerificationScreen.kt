@@ -1,8 +1,12 @@
 package com.olabode.wilson.cyclee.feature_authentication.presentation.verification
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.olabode.wilson.cyclee.common_ui.ui.UIText
@@ -16,11 +20,21 @@ import com.olabode.wilson.cyclee.feature_authentication.utils.timer.CycleeTimerS
  */
 @ExperimentalComposeUiApi
 @Composable
-fun VerificationScreen() {
+fun VerificationScreen(
+    modifier: Modifier = Modifier,
+    onNavigateToLogin: () -> Unit,
+) {
 
     val viewModel: VerificationScreenViewModel = hiltViewModel()
     val uiState = viewModel.uiState.collectAsState()
     val timerState = viewModel.timerState.collectAsState()
+
+    val currentOnNavigateToLogin by rememberUpdatedState(onNavigateToLogin)
+    LaunchedEffect(uiState.value) {
+        if (uiState.value.isVerificationSuccessful) {
+            currentOnNavigateToLogin()
+        }
+    }
 
     val resendButtonText: UIText = when (timerState.value) {
         is CycleeTimerState.Ticking -> {

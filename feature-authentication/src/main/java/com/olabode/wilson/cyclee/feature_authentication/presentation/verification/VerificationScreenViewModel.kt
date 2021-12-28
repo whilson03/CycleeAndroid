@@ -112,7 +112,8 @@ class VerificationScreenViewModel @Inject constructor(
                 _uiState.value.copy(
                     isLoading = false,
                     isSendButtonEnabled = false,
-                    isResendButtonEnabled = false
+                    isResendButtonEnabled = false,
+                    isVerificationSuccessful = true
                 )
             }
             is Result.Error -> {
