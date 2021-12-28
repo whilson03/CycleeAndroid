@@ -4,6 +4,8 @@ import com.olabode.wilson.cyclee.feature_authentication.data.repository.Authenti
 import com.olabode.wilson.cyclee.feature_authentication.domain.repository.AuthenticationRepository
 import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.register.RegisterUseCase
 import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.register.RegisterUseCaseImpl
+import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.verification.ResendVerificationTokenUseCase
+import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.verification.ResendVerificationTokenUseCaseImpl
 import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.verification.TokenVerificationUseCase
 import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.verification.TokenVerificationUseCaseImpl
 import dagger.Binds
@@ -35,4 +37,9 @@ abstract class AuthenticationRepositoryModule {
     abstract fun bindTokenVerificationUseCase(
         tokenVerificationUseCaseImpl: TokenVerificationUseCaseImpl
     ): TokenVerificationUseCase
+
+    @Binds
+    abstract fun bindResendVerificationTokenUseCase(
+        resendVerificationTokenUseCaseImpl: ResendVerificationTokenUseCaseImpl
+    ): ResendVerificationTokenUseCase
 }
