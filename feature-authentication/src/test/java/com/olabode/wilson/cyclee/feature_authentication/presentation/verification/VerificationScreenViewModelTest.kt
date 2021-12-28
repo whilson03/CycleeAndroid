@@ -191,4 +191,79 @@ class VerificationScreenViewModelTest {
                 viewStates = viewStates,
             )
     }
+
+    @Test
+    fun testResendTokenVerificationSuccess() = runBlockingTest {
+        val credential = VerificationCredentials(token = "", email = testEmail)
+
+        val initialState = VerificationScreenUiState(credentials = credential, email = uiEmail)
+
+        val resendingTokenState = VerificationScreenUiState(
+            credentials = credential,
+            email = uiEmail,
+            isLoading = true
+        )
+
+        val tokenResentState = VerificationScreenUiState(
+            credentials = credential,
+            email = uiEmail,
+            isLoading = false
+        )
+
+        val uiStates = listOf(
+            initialState,
+            resendingTokenState,
+            tokenResentState
+        )
+
+        testRobot
+            .buildViewModel()
+            .mockResendTokenVerificationResult(
+                email = testEmail,
+                result = Result.Success("")
+            ).expectViewStates(
+                action = {
+                    resendToken()
+                },
+                viewStates = uiStates,
+            )
+    }
+
+    @Test
+    fun testResendTokenVerificationError() = runBlockingTest {
+        val credential = VerificationCredentials(token = "", email = testEmail)
+
+        val initialState = VerificationScreenUiState(credentials = credential, email = uiEmail)
+
+        val resendingTokenState = VerificationScreenUiState(
+            credentials = credential,
+            email = uiEmail,
+            isLoading = true
+        )
+
+        val tokenResentState = VerificationScreenUiState(
+            credentials = credential,
+            email = uiEmail,
+            isLoading = false,
+            errorMessage = UIText.StringText(NetworkConstants.GENERIC_FAILURE_MESSAGE)
+        )
+
+        val uiStates = listOf(
+            initialState,
+            resendingTokenState,
+            tokenResentState
+        )
+
+        testRobot
+            .buildViewModel()
+            .mockResendTokenVerificationResult(
+                email = testEmail,
+                result = Result.Error()
+            ).expectViewStates(
+                action = {
+                    resendToken()
+                },
+                viewStates = uiStates,
+            )
+    }
 }

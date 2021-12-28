@@ -37,6 +37,9 @@ class VerificationCountDownTimerImpl @Inject constructor(
     }
 
     override fun startTimer() {
+        if (_timerState.value != CycleeTimerState.Finished) {
+            countDownTimer.cancel()
+        }
         countDownTimer.start()
     }
 

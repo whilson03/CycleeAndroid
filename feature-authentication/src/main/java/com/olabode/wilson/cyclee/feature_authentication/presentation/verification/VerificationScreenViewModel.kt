@@ -7,6 +7,7 @@ import com.olabode.wilson.cyclee.common_ui.ui.UIText
 import com.olabode.wilson.cyclee.core.data.Result
 import com.olabode.wilson.cyclee.feature_authentication.data.AuthConstants
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationCredentials
+import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.verification.ResendVerificationTokenUseCase
 import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.verification.TokenVerificationUseCase
 import com.olabode.wilson.cyclee.feature_authentication.utils.timer.VerificationCountDownTimer
 import com.olabode.wilson.cyclee.networking.constants.NetworkConstants
@@ -26,6 +27,7 @@ import javax.inject.Inject
 @HiltViewModel
 class VerificationScreenViewModel @Inject constructor(
     private val tokenVerificationUseCase: TokenVerificationUseCase,
+    private val resendVerificationTokenUseCase: ResendVerificationTokenUseCase,
     private val savedStateHandle: SavedStateHandle,
     private val timer: VerificationCountDownTimer
 ) : ViewModel() {
@@ -80,7 +82,13 @@ class VerificationScreenViewModel @Inject constructor(
     }
 
     fun onResendToken() {
-        startTimer()
+        val currentCredentials = _uiState.value.credentials
+        _uiState.value = uiState.value.copy(isLoading = true, isResendButtonEnabled = false)
+
+        viewModelScope.launch {
+            val result = resendVerificationTokenUseCase(currentCredentials.email)
+            handleResendTokenResult(result)
+        }
     }
 
     fun submitToken() {
@@ -97,9 +105,7 @@ class VerificationScreenViewModel @Inject constructor(
         }
     }
 
-    private fun handleTokenSubmissionResult(
-        result: Result<String>
-    ) {
+    private fun handleTokenSubmissionResult(result: Result<String>) {
         _uiState.value = when (result) {
             is Result.Success -> {
                 stopTimer()
@@ -116,6 +122,26 @@ class VerificationScreenViewModel @Inject constructor(
                     ),
                     isLoading = false,
                     isSendButtonEnabled = true
+                )
+            }
+        }
+    }
+
+    private fun handleResendTokenResult(result: Result<String>) {
+        _uiState.value = when (result) {
+            is Result.Success -> {
+                startTimer()
+                _uiState.value.copy(
+                    isLoading = false,
+                    isResendButtonEnabled = false
+                )
+            }
+            is Result.Error -> {
+                _uiState.value.copy(
+                    errorMessage = UIText.StringText(
+                        result.message ?: NetworkConstants.GENERIC_FAILURE_MESSAGE,
+                    ),
+                    isLoading = false,
                 )
             }
         }

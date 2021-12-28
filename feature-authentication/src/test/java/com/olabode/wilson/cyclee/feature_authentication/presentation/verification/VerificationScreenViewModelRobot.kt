@@ -6,6 +6,7 @@ import com.google.common.truth.Truth.assertThat
 import com.olabode.wilson.cyclee.core.data.Result
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationCredentials
 import com.olabode.wilson.cyclee.feature_authentication.fakes.FakeCountDownTimer
+import com.olabode.wilson.cyclee.feature_authentication.fakes.FakeResendTokenVerificationUseCase
 import com.olabode.wilson.cyclee.feature_authentication.fakes.FakeTokenVerificationUseCase
 
 /**
@@ -18,6 +19,8 @@ class VerificationScreenViewModelRobot {
 
     private val fakeTokenVerificationUseCase = FakeTokenVerificationUseCase()
 
+    private val fakeResendTokenVerificationUseCase = FakeResendTokenVerificationUseCase()
+
     private val savedStateHandle = SavedStateHandle().apply {
         set("email", "test@mail.com")
     }
@@ -29,8 +32,9 @@ class VerificationScreenViewModelRobot {
     fun buildViewModel() = apply {
         viewModel = VerificationScreenViewModel(
             tokenVerificationUseCase = fakeTokenVerificationUseCase.mock,
+            resendVerificationTokenUseCase = fakeResendTokenVerificationUseCase.mock,
             savedStateHandle = savedStateHandle,
-            timer = fakeCountDownTimer
+            timer = fakeCountDownTimer,
         )
     }
 
@@ -42,6 +46,20 @@ class VerificationScreenViewModelRobot {
             credentials = credentials,
             result = result
         )
+    }
+
+    fun mockResendTokenVerificationResult(
+        email: String,
+        result: Result<String>
+    ) = apply {
+        fakeResendTokenVerificationUseCase.mockResendTokenVerificationResult(
+            email = email,
+            result = result
+        )
+    }
+
+    fun resendToken() {
+        viewModel.onResendToken()
     }
 
     fun enterToken(token: String) {
