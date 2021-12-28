@@ -29,6 +29,12 @@ interface AuthApiService {
         @Field("email") email: String
     ): BasicApiResponse
 
+    @FormUrlEncoded
+    @POST("$authPath/resend-token")
+    suspend fun resendVerificationToken(
+        @Field("email") email: String
+    ): BasicApiResponse
+
     companion object {
         private const val authPath = NetworkConstants.BASE_AUTH_URL
     }

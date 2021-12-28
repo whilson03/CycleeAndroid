@@ -55,4 +55,18 @@ class AuthenticationRepositoryImpl @Inject constructor(
             )
         }
     }
+
+    override suspend fun resendVerificationToken(email: String): Result<String> {
+        val result = safeApiCall(Dispatchers.IO) {
+            authApi.resendVerificationToken(email)
+        }
+
+        return when (result) {
+            is NetworkResult.NetworkError -> Result.Error()
+            is NetworkResult.GenericError -> Result.Error(message = result.error?.errorMessage)
+            is NetworkResult.Success -> Result.Success(
+                result.value.message ?: NetworkConstants.GENERIC_SUCCESS_MESSAGE
+            )
+        }
+    }
 }

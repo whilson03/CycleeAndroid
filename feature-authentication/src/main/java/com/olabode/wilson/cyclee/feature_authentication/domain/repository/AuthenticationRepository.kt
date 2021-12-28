@@ -20,4 +20,8 @@ interface AuthenticationRepository {
     suspend fun verifyToken(
         credentials: VerificationCredentials
     ): Result<String>
+
+    suspend fun resendVerificationToken(
+        email: String
+    ): Result<String>
 }
