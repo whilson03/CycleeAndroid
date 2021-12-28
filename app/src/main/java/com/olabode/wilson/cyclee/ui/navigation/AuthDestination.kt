@@ -66,7 +66,11 @@ fun NavGraphBuilder.addAuthGraph(navController: NavController) {
                 }
             )
         ) {
-            VerificationScreen()
+            VerificationScreen(onNavigateToLogin = {
+                navController.navigate(AuthScreen.Login.route) {
+                    popUpTo(AuthScreen.Login.route) { inclusive = true }
+                }
+            })
         }
 
         composable(AuthScreen.CreateNewPasswordScreen.route) {
