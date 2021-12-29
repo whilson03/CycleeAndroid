@@ -1,7 +1,9 @@
 package com.olabode.wilson.cyclee.feature_authentication.domain.repository
 
 import com.olabode.wilson.cyclee.core.data.Result
+import com.olabode.wilson.cyclee.feature_authentication.data.network.response.LoginResponse
 import com.olabode.wilson.cyclee.feature_authentication.data.network.response.RegisterResponse
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.login.LoginCredential
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterCredentials
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationCredentials
 
@@ -16,6 +18,10 @@ interface AuthenticationRepository {
     suspend fun register(
         credentials: RegisterCredentials
     ): Result<RegisterResponse>
+
+    suspend fun login(
+        credential: LoginCredential
+    ): Result<LoginResponse>
 
     suspend fun verifyToken(
         credentials: VerificationCredentials

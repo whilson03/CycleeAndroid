@@ -1,6 +1,7 @@
 package com.olabode.wilson.cyclee.feature_authentication.data
 
 import com.olabode.wilson.cyclee.feature_authentication.data.network.request.CreateAccountRequest
+import com.olabode.wilson.cyclee.feature_authentication.data.network.response.LoginResponse
 import com.olabode.wilson.cyclee.feature_authentication.data.network.response.RegisterResponse
 import com.olabode.wilson.cyclee.networking.constants.NetworkConstants
 import com.olabode.wilson.cyclee.networking.domain.models.BasicApiResponse
@@ -21,6 +22,13 @@ interface AuthApiService {
     suspend fun register(
         @Body request: CreateAccountRequest
     ): RegisterResponse
+
+    @FormUrlEncoded
+    @POST("$authPath/login")
+    suspend fun login(
+        @Field("email") email: String,
+        @Field("password") password: String
+    ): LoginResponse
 
     @FormUrlEncoded
     @POST("$authPath/verify")

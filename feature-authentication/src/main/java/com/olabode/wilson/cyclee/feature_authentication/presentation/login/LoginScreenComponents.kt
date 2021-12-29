@@ -17,11 +17,13 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.olabode.wilson.cyclee.common_ui.theme.Orange600
+import com.olabode.wilson.cyclee.common_ui.ui.getString
 import com.olabode.wilson.cyclee.feature_authentication.R
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.AuthButton
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.PasswordTextField
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.TextInputField
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.TextInputFieldStyle
+import com.olabode.wilson.cyclee.feature_authentication.presentation.register.LoginUiState
 
 /**
  * CREATED BY: ADEYORIJU OLABODE WILSON
@@ -47,6 +49,7 @@ fun ForgotPasswordButton(
 @Composable
 fun LoginFormContainer(
     modifier: Modifier = Modifier,
+    uiState: LoginUiState,
     onEmailChanged: (email: String) -> Unit,
     onPasswordChanged: (password: String) -> Unit,
     onForgotPasswordClicked: () -> Unit,
@@ -59,18 +62,20 @@ fun LoginFormContainer(
     ) {
         TextInputField(
             modifier = Modifier.fillMaxWidth(),
-            value = "",
+            value = uiState.credential.email,
             label = stringResource(R.string.email),
             style = TextInputFieldStyle(
                 keyboardType = KeyboardType.Email
             ),
+            errorMessage = uiState.emailErrorMessage?.getString(),
             onValueChange = onEmailChanged
         )
         Spacer(modifier = Modifier.height(16.dp))
         PasswordTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = "",
+            value = uiState.credential.password,
             label = stringResource(R.string.password),
+            errorMessage = uiState.passwordErrorMessage?.getString(),
             onValueChange = onPasswordChanged
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -88,6 +93,7 @@ fun LoginFormContainer(
 @Composable
 fun PreviewLoginLoginFormContainer() {
     LoginFormContainer(
+        uiState = LoginUiState(),
         onEmailChanged = {},
         onForgotPasswordClicked = {},
         onPasswordChanged = {},

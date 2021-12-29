@@ -10,17 +10,21 @@
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="email">Email</string>
+
     <string name="create_new_account_question">Don’t have an account</string>
     <string name="create_new_account_question_action">Create Account</string>
     <string name="sign_up">Sign Up</string>
     <string name="full_name">Full Name</string>
+
     <string name="existing_account_question">Already have an account</string>
     <string name="existing_account_question_action">login</string>
     <string name="create_account_message">A bicycle ride around the world is healing.</string>
     <string name="login_account_message">Life is a beautiful ride.</string>
+
     <string name="password_recovery_subtitle">Treat your password like your bicycle</string>
     <string name="password_recovery_header">Password Recovery</string>
     <string name="create">Create</string>
+
     <string name="create_new_password">Create a new password</string>
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
@@ -30,9 +34,12 @@
     <string name="err_empty_email">Please enter an email.</string>
     <string name="err_empty_password">Please enter a password.</string>
     <string name="err_empty_confirm_password">Please confirm your password.</string>
+
     <string name="err_invalid_credentials">Invalid credentials</string>
-    <string name="err_unknown">Oops... An unknown error occured.</string>
-    <string name="err_mismatched_passwords">Passwords do not match...</string>
+    <string name="err_unknown">Oops… An unknown error occurred.</string>
+    <string name="err_mismatched_passwords">Passwords do not match…</string>
+    <string name="err_unauthenticated">Pending account, Please verify account.</string>
+
     <string name="resend_code_with_time">Resend code in %1$s?</string>
     <string name="resend_code">Resend code</string>
 </resources>
