@@ -12,8 +12,6 @@ sealed class LoginResult {
 
     sealed class Failure : LoginResult() {
 
-        object InvalidCredentials : Failure()
-
         object UnVerifiedAccount : Failure()
 
         data class Error(val errorMessage: String? = null) : Failure()
