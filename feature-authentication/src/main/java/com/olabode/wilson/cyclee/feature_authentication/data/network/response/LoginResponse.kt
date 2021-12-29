@@ -1,5 +1,6 @@
 package com.olabode.wilson.cyclee.feature_authentication.data.network.response
 
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.login.AuthToken
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -10,6 +11,6 @@ import com.squareup.moshi.JsonClass
  */
 @JsonClass(generateAdapter = true)
 data class LoginResponse(
-    @Json(name = "access_token")
-    val accessToken: String
+    @Json(name = "token")
+    val token: AuthToken
 )

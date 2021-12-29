@@ -3,6 +3,7 @@ package com.olabode.wilson.cyclee.feature_authentication.domain.usecase.login
 import com.olabode.wilson.cyclee.core.data.Result
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.login.LoginCredential
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.login.LoginResult
+import com.olabode.wilson.cyclee.feature_authentication.domain.repository.AuthTokenRepository
 import com.olabode.wilson.cyclee.feature_authentication.domain.repository.AuthenticationRepository
 import javax.inject.Inject
 
@@ -13,7 +14,8 @@ import javax.inject.Inject
  */
 
 class LoginUseCaseImpl @Inject constructor(
-    private val authenticationRepository: AuthenticationRepository
+    private val authenticationRepository: AuthenticationRepository,
+    private val tokenRepository: AuthTokenRepository
 ) : LoginUseCase {
 
     override suspend fun invoke(credential: LoginCredential): LoginResult {
@@ -25,6 +27,7 @@ class LoginUseCaseImpl @Inject constructor(
 
         return when (val repoResult = authenticationRepository.login(credential)) {
             is Result.Success -> {
+                tokenRepository.storeToken(repoResult.data.token)
                 LoginResult.Success
             }
             is Result.Error -> {
