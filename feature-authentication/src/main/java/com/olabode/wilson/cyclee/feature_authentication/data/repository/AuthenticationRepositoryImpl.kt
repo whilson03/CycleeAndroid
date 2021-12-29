@@ -3,7 +3,9 @@ package com.olabode.wilson.cyclee.feature_authentication.data.repository
 import com.olabode.wilson.cyclee.core.data.Result
 import com.olabode.wilson.cyclee.feature_authentication.data.AuthApiService
 import com.olabode.wilson.cyclee.feature_authentication.data.network.request.CreateAccountRequest
+import com.olabode.wilson.cyclee.feature_authentication.data.network.response.LoginResponse
 import com.olabode.wilson.cyclee.feature_authentication.data.network.response.RegisterResponse
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.login.LoginCredential
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterCredentials
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationCredentials
 import com.olabode.wilson.cyclee.feature_authentication.domain.repository.AuthenticationRepository
@@ -31,6 +33,18 @@ class AuthenticationRepositoryImpl @Inject constructor(
             password = credentials.password
         )
         val result = safeApiCall(Dispatchers.IO) { authApi.register(request) }
+
+        return when (result) {
+            is NetworkResult.NetworkError -> Result.Error()
+            is NetworkResult.GenericError -> Result.Error(message = result.error?.errorMessage)
+            is NetworkResult.Success -> Result.Success(result.value)
+        }
+    }
+
+    override suspend fun login(credential: LoginCredential): Result<LoginResponse> {
+        val result = safeApiCall(Dispatchers.IO) {
+            authApi.login(email = credential.email, password = credential.password)
+        }
 
         return when (result) {
             is NetworkResult.NetworkError -> Result.Error()
