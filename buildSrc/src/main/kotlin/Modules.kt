@@ -15,4 +15,7 @@ object Modules {
     //features
     const val onBoarding = ":feature-onboarding"
     const val authentication = ":feature-authentication"
+
+    //libs
+    const val otpView = ":otp-view"
 }

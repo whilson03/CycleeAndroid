@@ -7,6 +7,7 @@ dependencies {
     "implementation"(project(Modules.commonUI))
     "implementation"(project(Modules.core))
     "implementation"(project(Modules.networking))
+    "implementation"(project(Modules.otpView))
 
     // tests
     "testImplementation"(Tests.mockk)
