@@ -1,7 +1,9 @@
 package com.olabode.wilson.cyclee.feature_authentication.fakes
 
 import com.olabode.wilson.cyclee.core.data.Result
+import com.olabode.wilson.cyclee.feature_authentication.data.network.response.LoginResponse
 import com.olabode.wilson.cyclee.feature_authentication.data.network.response.RegisterResponse
+import com.olabode.wilson.cyclee.feature_authentication.domain.model.login.LoginCredential
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.register.RegisterCredentials
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.verification.VerificationCredentials
 import com.olabode.wilson.cyclee.feature_authentication.domain.repository.AuthenticationRepository
@@ -32,6 +34,15 @@ class FakeAuthRepository {
     ) {
         coEvery {
             mock.verifyToken(credentials)
+        } returns result
+    }
+
+    fun mockLogin(
+        credential: LoginCredential,
+        result: Result<LoginResponse>
+    ) {
+        coEvery {
+            mock.login(credential)
         } returns result
     }
 }
