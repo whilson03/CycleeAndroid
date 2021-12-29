@@ -29,7 +29,7 @@ import com.olabode.wilson.cyclee.common_ui.ui.getString
 import com.olabode.wilson.cyclee.feature_authentication.R
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.AuthButton
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.AuthHeaderImage
-import com.olabode.wilson.cyclee.feature_authentication.presentation.components.pinview.PinView
+import com.olabode.wilson.cyclee.otp_view.PinView
 
 /**
  * CREATED BY: ADEYORIJU OLABODE WILSON

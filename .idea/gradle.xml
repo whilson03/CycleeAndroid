@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/feature-authentication" />
             <option value="$PROJECT_DIR$/feature-onboarding" />
             <option value="$PROJECT_DIR$/networking" />
+            <option value="$PROJECT_DIR$/otp-view" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
