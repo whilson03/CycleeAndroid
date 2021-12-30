@@ -7,7 +7,6 @@ import com.olabode.wilson.cyclee.feature_authentication.R
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.login.LoginCredential
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.login.LoginResult
 import com.olabode.wilson.cyclee.feature_authentication.domain.usecase.login.LoginUseCase
-import com.olabode.wilson.cyclee.feature_authentication.presentation.register.LoginUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

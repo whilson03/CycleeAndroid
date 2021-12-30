@@ -23,7 +23,6 @@ import com.olabode.wilson.cyclee.feature_authentication.presentation.components.
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.PasswordTextField
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.TextInputField
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.TextInputFieldStyle
-import com.olabode.wilson.cyclee.feature_authentication.presentation.register.LoginUiState
 
 /**
  * CREATED BY: ADEYORIJU OLABODE WILSON

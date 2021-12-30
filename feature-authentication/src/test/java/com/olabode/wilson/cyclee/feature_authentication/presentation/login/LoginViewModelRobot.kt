@@ -5,7 +5,6 @@ import com.google.common.truth.Truth.assertThat
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.login.LoginCredential
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.login.LoginResult
 import com.olabode.wilson.cyclee.feature_authentication.fakes.FakeLoginUseCase
-import com.olabode.wilson.cyclee.feature_authentication.presentation.register.LoginUiState
 
 /**
  * CREATED BY: ADEYORIJU OLABODE WILSON

@@ -27,7 +27,7 @@ class TokenVerificationUseCaseImplTest {
     }
 
     @Test
-    fun testSuccessfulTokenVerification() = runBlockingTest {
+    fun `should return success when verification is successful`() = runBlockingTest {
         val credential = VerificationCredentials(token = "12345", email = testEmail)
 
         val mockResult = Result.Success("")
@@ -46,7 +46,7 @@ class TokenVerificationUseCaseImplTest {
     }
 
     @Test
-    fun testEmptyTokenReturnsError() = runBlockingTest {
+    fun `should return error when an empty token is submitted`() = runBlockingTest {
         val credential = VerificationCredentials(token = "", email = testEmail)
 
         val mockResult = Result.Error()
@@ -65,7 +65,7 @@ class TokenVerificationUseCaseImplTest {
     }
 
     @Test
-    fun testInvalidTokenLengthReturnsError() = runBlockingTest {
+    fun `should return error when an invalid token is submitted`() = runBlockingTest {
         val credential = VerificationCredentials(token = "1", email = testEmail)
 
         val mockResult = Result.Error()
@@ -84,7 +84,7 @@ class TokenVerificationUseCaseImplTest {
     }
 
     @Test
-    fun testEmptyEmailReturnsError() = runBlockingTest {
+    fun `should return error when an email is not provided for verification`() = runBlockingTest {
         val credential = VerificationCredentials(token = "12345", email = "")
 
         val mockResult = Result.Error()

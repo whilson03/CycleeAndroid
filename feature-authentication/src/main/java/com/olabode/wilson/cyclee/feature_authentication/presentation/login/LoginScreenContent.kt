@@ -17,7 +17,6 @@ import com.olabode.wilson.cyclee.feature_authentication.R
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.AuthHeader
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.AuthHeaderImage
 import com.olabode.wilson.cyclee.feature_authentication.presentation.components.AuthQuestionButton
-import com.olabode.wilson.cyclee.feature_authentication.presentation.register.LoginUiState
 
 /**
  * CREATED BY: ADEYORIJU OLABODE WILSON
