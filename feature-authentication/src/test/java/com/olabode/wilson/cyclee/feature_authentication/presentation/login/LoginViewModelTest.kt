@@ -6,7 +6,6 @@ import com.olabode.wilson.cyclee.feature_authentication.R
 import com.olabode.wilson.cyclee.feature_authentication.ThreadExceptionHandlerTestRule
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.login.LoginCredential
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.login.LoginResult
-import com.olabode.wilson.cyclee.feature_authentication.presentation.register.LoginUiState
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Rule

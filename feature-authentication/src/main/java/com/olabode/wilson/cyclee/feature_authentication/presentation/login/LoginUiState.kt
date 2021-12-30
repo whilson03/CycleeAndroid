@@ -1,4 +1,4 @@
-package com.olabode.wilson.cyclee.feature_authentication.presentation.register
+package com.olabode.wilson.cyclee.feature_authentication.presentation.login
 
 import com.olabode.wilson.cyclee.common_ui.ui.UIText
 import com.olabode.wilson.cyclee.feature_authentication.domain.model.login.LoginCredential
