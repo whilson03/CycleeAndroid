@@ -43,7 +43,7 @@ class RegisterViewModelTest {
     }
 
     @Test
-    fun testUpdateCredentials() = runBlockingTest {
+    fun `credentials should be updated when values are entered into the input fields`() = runBlockingTest {
         val credentials = defaultCredentials
 
         val initialUiSate = RegisterUiState(
@@ -114,7 +114,7 @@ class RegisterViewModelTest {
     }
 
     @Test
-    fun testSubmitWithoutCredentials() = runBlockingTest {
+    fun `clicking register button when input fields are blank returns error for each field`() = runBlockingTest {
         val initialUiSate = RegisterUiState(
             credentials = RegisterCredentials.EMPTY
         )
@@ -160,7 +160,7 @@ class RegisterViewModelTest {
     }
 
     @Test
-    fun testShowPasswordMismatchErrorMessage() = runBlockingTest {
+    fun `show a password mismatch error message when both passwords do not match`() = runBlockingTest {
         val credentials = defaultCredentials
 
         val initialUiSate = RegisterUiState(
@@ -248,7 +248,7 @@ class RegisterViewModelTest {
     }
 
     @Test
-    fun testSuccessfulRegistration() = runBlockingTest {
+    fun `should return success result when registration is successful`() = runBlockingTest {
         val credentials = defaultCredentials
 
         val initialUiSate = RegisterUiState(
@@ -344,7 +344,7 @@ class RegisterViewModelTest {
     }
 
     @Test
-    fun testRegistrationError() = runBlockingTest {
+    fun `should return error result when registration fails`() = runBlockingTest {
         val credentials = defaultCredentials
 
         val initialUiSate = RegisterUiState(

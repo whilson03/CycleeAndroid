@@ -44,7 +44,7 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `credentials should when updated when value entered into the input fields`() =
+    fun `credentials should be updated when values are entered into the input fields`() =
         runBlockingTest {
 
             val initialUiSate = LoginUiState(credential = LoginCredential("", ""))

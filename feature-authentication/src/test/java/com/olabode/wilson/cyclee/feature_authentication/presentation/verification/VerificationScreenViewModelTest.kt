@@ -32,7 +32,7 @@ class VerificationScreenViewModelTest {
     }
 
     @Test
-    fun testUpdateTokenCredential() = runBlockingTest {
+    fun `should update token value when values are entered into the pin view`() = runBlockingTest {
         val credential = VerificationCredentials(token = "12345", email = testEmail)
 
         // email is passed from register viewModel to the savedStateHandle of VerificationViewModel
@@ -60,7 +60,7 @@ class VerificationScreenViewModelTest {
     }
 
     @Test
-    fun testIncompleteTokenInputDisablesSubmitButton() = runBlockingTest {
+    fun `should disable submit button when the token entered is not complete`() = runBlockingTest {
         val credential = VerificationCredentials(token = "123", email = testEmail)
 
         val initialState = VerificationScreenUiState(
@@ -87,7 +87,7 @@ class VerificationScreenViewModelTest {
     }
 
     @Test
-    fun testSuccessfulCredentialSubmission() = runBlockingTest {
+    fun `should return success result when verification is successful`() = runBlockingTest {
         val credential = VerificationCredentials(token = "12345", email = testEmail)
 
         val initialState = VerificationScreenUiState(
@@ -140,7 +140,7 @@ class VerificationScreenViewModelTest {
     }
 
     @Test
-    fun testCredentialSubmissionError() = runBlockingTest {
+    fun `should return error result when verification fails`() = runBlockingTest {
         val credential = VerificationCredentials(token = "12345", email = testEmail)
 
         val initialState = VerificationScreenUiState(
@@ -194,7 +194,7 @@ class VerificationScreenViewModelTest {
     }
 
     @Test
-    fun testResendTokenVerificationSuccess() = runBlockingTest {
+    fun `should return success result when token is successfully resent`() = runBlockingTest {
         val credential = VerificationCredentials(token = "", email = testEmail)
 
         val initialState = VerificationScreenUiState(credentials = credential, email = uiEmail)
@@ -231,7 +231,7 @@ class VerificationScreenViewModelTest {
     }
 
     @Test
-    fun testResendTokenVerificationError() = runBlockingTest {
+    fun `should return error result when token fails to resend`() = runBlockingTest {
         val credential = VerificationCredentials(token = "", email = testEmail)
 
         val initialState = VerificationScreenUiState(credentials = credential, email = uiEmail)

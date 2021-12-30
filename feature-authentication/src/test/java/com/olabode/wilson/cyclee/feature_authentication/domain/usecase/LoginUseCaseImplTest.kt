@@ -36,7 +36,7 @@ class LoginUseCaseImplTest {
     }
 
     @Test
-    fun `should return success when correct login credentials are provided`() = runBlockingTest {
+    fun `should return success when login is successful`() = runBlockingTest {
         val credentials = LoginCredential(email = "a@mail.com", password = "a")
 
         val mockResponse = LoginResponse(token = defaultToken)
