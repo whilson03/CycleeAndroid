@@ -26,7 +26,7 @@ fun SplashScreen(
 
 @Suppress("UnusedPrivateMember")
 @Composable
-fun SplashScreenContent(
+internal fun SplashScreenContent(
     modifier: Modifier = Modifier,
     openOnBoarding: () -> Unit,
     openAuth: () -> Unit,

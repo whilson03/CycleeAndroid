@@ -51,6 +51,7 @@ dependencies {
     "implementation"(project(Modules.onBoarding))
     "implementation"(project(Modules.authentication))
     "implementation"(project(Modules.networking))
+    "implementation"(project(Modules.core))
 
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.appCompat)
