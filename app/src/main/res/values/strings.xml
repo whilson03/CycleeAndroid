@@ -21,4 +21,8 @@
     <string name="password_recovery_header">Password Recovery</string>
     <string name="create">Create</string>
     <string name="create_new_password">Create a new password</string>
+    <string name="home_feed">Feed</string>
+    <string name="home_activities">Activities</string>
+    <string name="home_explore">Explore</string>
+    <string name="home_profile">Profile</string>
 </resources>

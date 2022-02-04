@@ -5,6 +5,7 @@ sealed class Screen(val route: String) {
     object Splash : Screen("splash")
     object OnBoarding : Screen("onBoarding")
     object Authentication : Screen("authentication")
+    object Home : Screen("home")
 }
 
 sealed class AuthScreen(val route: String) {
@@ -19,4 +20,11 @@ sealed class AuthScreen(val route: String) {
 
     object ForgotPassword : AuthScreen("forgotPassword")
     object CreateNewPasswordScreen : AuthScreen("createNewPassword")
+}
+
+sealed class MainScreen(val route: String) {
+    object Feeds : MainScreen("feeds")
+    object Explore : MainScreen("explore")
+    object Activities : MainScreen("activities")
+    object Profile : MainScreen("profile")
 }

@@ -10,7 +10,9 @@ import com.olabode.wilson.cyclee.feature_authentication.presentation.splash.Spla
 fun NavGraphBuilder.addSplashGraph(navController: NavController) {
     composable(route = Screen.Splash.route) {
         SplashScreen(
-            openMainApp = {},
+            openMainApp = {
+                navController.navigate(Screen.Home.route)
+            },
             openAuth = {
                 navController.navigate(Screen.Authentication.route)
             },
